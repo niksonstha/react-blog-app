@@ -1,0 +1,75 @@
+import {
+  Box,
+  FormControl,
+  FormLabel,
+  Input,
+  Button,
+  useToast,
+} from "@chakra-ui/react";
+import { useState } from "react";
+import { loginUser } from "../api/api";
+import { useNavigate } from "react-router-dom";
+
+const LoginForm = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const toast = useToast();
+  const navigate = useNavigate();
+
+  const HandleLogin = async () => {
+    const login = await loginUser(email, password);
+    if (login) {
+      toast({
+        title: "Login Successfull",
+        status: "success",
+        duration: 2000,
+        isClosable: true,
+      });
+      navigate("/home");
+    } else {
+      navigate("/register");
+    }
+
+    setEmail("");
+    setPassword("");
+  };
+
+  return (
+    <Box width={"90%"} mb={5}>
+      <FormControl display="flex" gap={5} flexDirection={"column"}>
+        <Box>
+          <FormLabel htmlFor="email">Email</FormLabel>
+          <Input
+            id="email"
+            type="email"
+            bgColor={"#F1EFEF"}
+            outline={"none"}
+            border={"none"}
+            autoComplete="off"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </Box>
+
+        <Box>
+          <FormLabel htmlFor="password">Password</FormLabel>
+          <Input
+            id="password"
+            type="password"
+            bgColor={"#F1EFEF"}
+            outline={"none"}
+            border={"none"}
+            autoComplete="off"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </Box>
+        <Button colorScheme="teal" width={"30%"} onClick={HandleLogin}>
+          Login
+        </Button>
+      </FormControl>
+    </Box>
+  );
+};
+
+export default LoginForm;

@@ -1,6 +1,6 @@
 import { model, Schema } from "mongoose";
 
-const todoSchema = new Schema(
+const blogSchema = new Schema(
   {
     todo: {
       type: String,
@@ -14,4 +14,4 @@ const todoSchema = new Schema(
   { timestamps: true }
 );
 
-export const Todo = model("Todo", todoSchema);
+export const Blog = model("Blog", blogSchema);

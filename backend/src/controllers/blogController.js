@@ -1,4 +1,4 @@
-import { Todo } from "../model/todoSchema.js";
+import { Todo } from "../model/blogSchema.js";
 
 export const createTask = async (req, res) => {
   try {

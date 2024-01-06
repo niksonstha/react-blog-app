@@ -3,7 +3,7 @@ import { connection } from "./db/connection.js";
 import express from "express";
 import cors from "cors";
 import userRoutes from "./routes/userRoutes.js";
-import todoRoutes from "./routes/todoRoutes.js";
+import todoRoutes from "./routes/blogRoutes.js";
 
 const app = express();
 
