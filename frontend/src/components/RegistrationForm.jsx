@@ -5,6 +5,7 @@ import {
   Input,
   Button,
   useToast,
+  Text,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { registerUser } from "../api/api";
@@ -29,7 +30,7 @@ const RegistrationForm = () => {
         isClosable: true,
       });
     }
-    navigate("/home")
+    navigate("/home");
     setFullname("");
     setUsername("");
     setEmail("");
@@ -98,6 +99,15 @@ const RegistrationForm = () => {
           Register
         </Button>
       </FormControl>
+      <Text
+        mt={4}
+        color={"#CCC8AA"}
+        cursor={"pointer"}
+        transition={"all 0.6s ease-in"}
+        _hover={{ textDecoration: "underline" }}
+      >
+        Create an account
+      </Text>
     </Box>
   );
 };

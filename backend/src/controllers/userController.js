@@ -1,5 +1,6 @@
 // userController.js
 import { User } from "../model/userSchema.js";
+import { setUser } from "../services/auth.js";
 
 export const createUser = async (req, res) => {
   try {
@@ -26,20 +27,29 @@ export const getAllUser = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
 export const loginUser = async (req, res) => {
   try {
     const loginUser = await User.findOne({
       email: req.body.email,
       password: req.body.password,
     });
-    res.status(200).json({
-      success: "ok",
-      message: `Welcome ${loginUser.email}`,
-    });
+    console.log(loginUser);
+    const token = setUser(loginUser.toObject());
+    console.log(token);
+    res
+      .status(200)
+      .cookie("uid", token)
+      .json({
+        success: "ok",
+        message: `Welcome ${loginUser.email}`,
+      });
   } catch (err) {
+    console.log(err);
     res.status(500).json({ error: err.message });
   }
 };
+
 export const updateUser = async (req, res) => {
   const id = req.params.id;
   const body = req.body;
@@ -50,6 +60,7 @@ export const updateUser = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
 export const deleteUser = async (req, res) => {
   const id = req.params.id;
 

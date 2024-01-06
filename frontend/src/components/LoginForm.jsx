@@ -6,9 +6,10 @@ import {
   Button,
   useToast,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { loginUser } from "../api/api";
 import { useNavigate } from "react-router-dom";
+import Cookie from "js-cookie";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -27,12 +28,29 @@ const LoginForm = () => {
       });
       navigate("/home");
     } else {
-      navigate("/register");
+      toast({
+        title: "Please use valid email and password",
+        status: "error",
+        duration: 2000,
+        isClosable: true,
+      });
     }
 
     setEmail("");
     setPassword("");
   };
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const validateUser = () => {
+    const cookie = Cookie.get("uid");
+
+    if (cookie) {
+      navigate("/home");
+    }
+  };
+  useEffect(() => {
+    validateUser();
+  }, [validateUser]);
 
   return (
     <Box width={"90%"} mb={5}>

@@ -1,8 +1,8 @@
-import { Todo } from "../model/blogSchema.js";
+import { Blog } from "../model/blogSchema.js";
 
 export const createTask = async (req, res) => {
   try {
-    const newTask = await Todo.create({
+    const newTask = await Blog.create({
       todo: req.body.todo,
     }).populate("user");
     res.status(200).json(newTask);

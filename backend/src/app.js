@@ -2,8 +2,9 @@ import "dotenv/config";
 import { connection } from "./db/connection.js";
 import express from "express";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 import userRoutes from "./routes/userRoutes.js";
-import todoRoutes from "./routes/blogRoutes.js";
+import blogRoutes from "./routes/blogRoutes.js";
 
 const app = express();
 
@@ -18,11 +19,17 @@ connection()
 
 // ? Middleware
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
+app.use(cookieParser());
 
 // ? routes
 app.use("/api/v1/user", userRoutes);
-app.use("/api/v1/todo", todoRoutes);
+app.use("/api/v1/blog", blogRoutes);
 
 // ? server start
 app.listen(process.env.PORT, () => {

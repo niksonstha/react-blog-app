@@ -22,7 +22,7 @@ const LoginScreen = () => {
           letterSpacing={5}
           fontFamily="'Long Cang', cursive"
         >
-          REGISTER
+          LOGIN
         </Heading>
         <LoginForm />
       </Box>
