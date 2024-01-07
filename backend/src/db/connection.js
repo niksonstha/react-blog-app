@@ -1,5 +1,6 @@
+import "dotenv/config";
 import mongoose from "mongoose";
 
 export const connection = () => {
-  return mongoose.connect("mongodb://127.0.0.1:27017/blog");
+  return mongoose.connect(`${process.env.DB_URL}/blog`);
 };

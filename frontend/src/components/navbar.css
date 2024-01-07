@@ -1,0 +1,12 @@
+.navVisible {
+  display: flex;
+  /* Add any other styles for visible state */
+  transition: all 1s ease-in;
+}
+
+.navHidden {
+  display: none;
+
+  /* Add any other styles for hidden state */
+  transition: all 0.3s ease-in;
+}

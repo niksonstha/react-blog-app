@@ -4,7 +4,7 @@ const LoginScreen = () => {
   return (
     <Box>
       <Box
-        width={"30%"}
+        width={["90%", "90%", "30%"]}
         height={"max-content"}
         ml={"auto"}
         mr={"auto"}

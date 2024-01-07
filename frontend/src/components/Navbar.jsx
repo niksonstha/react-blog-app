@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { FaBarsStaggered } from "react-icons/fa6";
 import { useState } from "react";
+import "./navbar.css";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -22,8 +23,7 @@ const Navbar = () => {
       alignItems={"center"}
       color={"black"}
       overflowX={"hidden"}
-      transition={"all 0.5s ease-in"}
-      width={"100%"}
+      transition={"all 0.3s ease-in"}
     >
       <Heading
         ml={10}
@@ -38,15 +38,16 @@ const Navbar = () => {
         display={[`${nav ? "flex" : "none"}`, `${nav}`, "flex"]}
         flexDirection={["column", "column", "row"]}
         gap={10}
-        mr={10}
         fontSize={"1.2rem"}
         fontWeight={500}
         position={nav && ["absolute", "absolute"]}
         top={"5rem"}
-        bgColor={["white", "white", "transparent"]}
-        width={nav && ["100%", "100%"]}
-        overflowX={"hidden"}
+        left={-5}
+        bgColor={["#7D7C7C", "#7D7C7C", "transparent"]}
+        width={["100%", "100%", "auto"]}
         zIndex={"10"}
+        padding={5}
+        className={nav ? "navVisible" : "navHidden"}
       >
         <ListItem
           listStyleType={"none"}
