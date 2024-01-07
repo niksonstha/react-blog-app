@@ -5,11 +5,12 @@ import {
   Input,
   Button,
   useToast,
+  Text,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { loginUser } from "../api/api";
-import { useNavigate } from "react-router-dom";
-import Cookie from "js-cookie";
+import { NavLink, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -26,7 +27,7 @@ const LoginForm = () => {
         duration: 2000,
         isClosable: true,
       });
-      navigate("/home");
+      navigate("/");
     } else {
       toast({
         title: "Please use valid email and password",
@@ -42,10 +43,10 @@ const LoginForm = () => {
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const validateUser = () => {
-    const cookie = Cookie.get("uid");
+    const cookie = Cookies.get("uid");
 
     if (cookie) {
-      navigate("/home");
+      navigate("/");
     }
   };
   useEffect(() => {
@@ -86,6 +87,14 @@ const LoginForm = () => {
           Login
         </Button>
       </FormControl>
+      <Text
+        mt={4}
+        color={"#CCC8AA"}
+        cursor={"pointer"}
+        _hover={{ textDecoration: "underline" }}
+      >
+        <NavLink to={"/register"}>Create an account</NavLink>
+      </Text>
     </Box>
   );
 };

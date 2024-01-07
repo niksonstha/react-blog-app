@@ -1,22 +1,19 @@
-import { Box, Text } from "@chakra-ui/react";
-import Cookie from "js-cookie";
-import { useEffect } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { Box, Text, Button } from "@chakra-ui/react";
+import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 const HomeScreen = () => {
   const navigate = useNavigate();
-  const validateUser = () => {
-    const cookie = Cookie.get("uid");
 
-    if (!cookie) {
-      navigate("/login");
-    }
+  const logoutHandler = () => {
+    Cookies.remove("uid");
+    navigate("/login");
   };
-  useEffect(() => {
-    validateUser();
-  }, []);
+
   return (
     <Box>
-      <Text>Home Page</Text>
+      {/* <Text>Home Page</Text>
+      <Button onClick={logoutHandler}>Logout</Button> */}
     </Box>
   );
 };

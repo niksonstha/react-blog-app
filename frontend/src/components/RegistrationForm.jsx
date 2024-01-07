@@ -7,9 +7,10 @@ import {
   useToast,
   Text,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { registerUser } from "../api/api";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const RegistrationForm = () => {
   const [fullname, setFullname] = useState("");
@@ -30,12 +31,23 @@ const RegistrationForm = () => {
         isClosable: true,
       });
     }
-    navigate("/home");
+    navigate("/login");
     setFullname("");
     setUsername("");
     setEmail("");
     setPassword("");
   };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const validateUser = () => {
+    const cookie = Cookies.get("uid");
+
+    if (cookie) {
+      navigate("/");
+    }
+  };
+  useEffect(() => {
+    validateUser();
+  }, [validateUser]);
 
   return (
     <Box width={"90%"} mb={5}>
@@ -103,10 +115,9 @@ const RegistrationForm = () => {
         mt={4}
         color={"#CCC8AA"}
         cursor={"pointer"}
-        transition={"all 0.6s ease-in"}
         _hover={{ textDecoration: "underline" }}
       >
-        Create an account
+        <NavLink to={"/login"}>Already have account</NavLink>
       </Text>
     </Box>
   );

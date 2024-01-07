@@ -34,9 +34,8 @@ export const loginUser = async (req, res) => {
       email: req.body.email,
       password: req.body.password,
     });
-    console.log(loginUser);
     const token = setUser(loginUser.toObject());
-    console.log(token);
+
     res
       .status(200)
       .cookie("uid", token)
