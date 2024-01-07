@@ -30,3 +30,18 @@ export const loginUser = async (email, password) => {
     console.log(error);
   }
 };
+
+export const updateUser = async (id, fullname, email) => {
+  try {
+    const response = await axios.patch(
+      `${import.meta.env.VITE_UPDATE_URL}/${id}`,
+      {
+        fullname,
+        email,
+      }
+    );
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};

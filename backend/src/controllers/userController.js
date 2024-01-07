@@ -27,14 +27,6 @@ export const getAllUser = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
-export const getUserInfo = async (req, res) => {
-  try {
-    const getAllUser = await User.find();
-    res.status(200).json(getAllUser);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-};
 
 export const loginUser = async (req, res) => {
   try {

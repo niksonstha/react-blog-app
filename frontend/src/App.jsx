@@ -22,10 +22,12 @@ function App() {
 
         <Route element={<ProtectedRoute />}>
           <Route path="/" element={<HomeScreen />} />
+
           <Route path="/profile/" element={<ProfileScreen />}>
             <Route path="userInfo" element={<ProfileInfo />} />
             <Route path="updateProfile" element={<UpdateProfile />} />
           </Route>
+
           <Route path="/blog" element={<BlogsScreen />} />
         </Route>
       </Routes>

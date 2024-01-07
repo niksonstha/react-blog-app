@@ -17,17 +17,23 @@ const ProfileScreen = () => {
     >
       <Heading
         fontFamily={"'Long Cang', cursive"}
-        fontSize={"4rem"}
+        fontSize={["3rem", "3rem", "4rem"]}
         userSelect={"none"}
         letterSpacing={3}
       >
         MY PROFILE
       </Heading>
-      <Box display={"flex"} gap={10}>
+      <Box display={"flex"} gap={4}>
         <Box width={"30vw"} height={"40vh"}>
           <ProfileSideBar />
         </Box>
-        <Box width={"70vw"}>
+        <Box
+          width={"70vw"}
+          bgColor={"#F1EFEF"}
+          rounded={5}
+          height={"40vh"}
+          padding={4}
+        >
           <Outlet />
         </Box>
       </Box>
