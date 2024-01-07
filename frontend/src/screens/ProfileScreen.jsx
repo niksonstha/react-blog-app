@@ -19,7 +19,7 @@ const ProfileScreen = () => {
   return (
     <Box
       bgColor={"#F1EFEF"}
-      width={"50vw"}
+      width={["90vw", "90vw", "80vw", "70vw", "60vw", "50vw"]}
       ml={"auto"}
       mr={"auto"}
       mt={10}

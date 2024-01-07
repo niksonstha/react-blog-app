@@ -6,6 +6,7 @@ import LoginScreen from "./screens/LoginScreen";
 import Navbar from "./components/Navbar";
 import ProtectedRoute from "./private/ProtectedRoute";
 import ProfileScreen from "./screens/ProfileScreen";
+import BlogsScreen from "./screens/BlogsScreen";
 
 function App() {
   const location = useLocation();
@@ -20,6 +21,7 @@ function App() {
         <Route element={<ProtectedRoute />}>
           <Route path="/" element={<HomeScreen />} />
           <Route path="/profile" element={<ProfileScreen />} />
+          <Route path="/blog" element={<BlogsScreen />} />
         </Route>
       </Routes>
     </Box>
