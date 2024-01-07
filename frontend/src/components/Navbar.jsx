@@ -2,27 +2,34 @@ import { Box, Heading, UnorderedList, ListItem } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { FaBarsStaggered } from "react-icons/fa6";
+import { FaUser } from "react-icons/fa";
 import { useState } from "react";
-import "./navbar.css";
+import Profile from "./Profile";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
   const location = useLocation();
 
   const navbarHandler = () => {
     setNav(!nav);
   };
 
+  const profileHandler = () => {
+    setShowProfile(!showProfile);
+  };
+
   return (
     <Box
       as="nav"
       bgColor="#7D7C7C"
-      height={"5rem"}
+      height={"4rem"}
       display={"flex"}
       justifyContent={"space-between"}
       alignItems={"center"}
       color={"black"}
       overflowX={"hidden"}
+      overflowY={"hidden"}
       transition={"all 0.3s ease-in"}
     >
       <Heading
@@ -41,13 +48,12 @@ const Navbar = () => {
         fontSize={"1.2rem"}
         fontWeight={500}
         position={nav && ["absolute", "absolute"]}
-        top={"5rem"}
+        top={"4rem"}
         left={-5}
         bgColor={["#7D7C7C", "#7D7C7C", "transparent"]}
         width={["100%", "100%", "auto"]}
         zIndex={"10"}
         padding={5}
-        className={nav ? "navVisible" : "navHidden"}
       >
         <ListItem
           listStyleType={"none"}
@@ -112,8 +118,34 @@ const Navbar = () => {
           </NavLink>
         </ListItem>
       </UnorderedList>
-      <Box mr={10} display={["block", "block", "none"]}>
-        <FaBarsStaggered cursor={"pointer"} onClick={navbarHandler} />
+      <Box display={"flex"} alignItems={"center"}>
+        <Box
+          mr={3}
+          display={["block", "block", "block"]}
+          bgColor={"#F1EFEF"}
+          padding={2}
+          rounded={50}
+          cursor={"pointer"}
+          pos={"relative"}
+          onClick={profileHandler}
+        >
+          <FaUser />
+        </Box>
+        <Box
+          pos={"absolute"}
+          bgColor={"#F1EFEF"}
+          top={"5rem"}
+          right={10}
+          rounded={4}
+          transition={"opacity 0.3s ease-in-out"}
+          opacity={showProfile ? 1 : 0}
+          pointerEvents={showProfile ? "all" : "none"}
+        >
+          {showProfile && <Profile onClick={profileHandler} />}
+        </Box>
+        <Box mr={3} display={["block", "block", "none"]}>
+          <FaBarsStaggered cursor={"pointer"} onClick={navbarHandler} />
+        </Box>
       </Box>
     </Box>
   );

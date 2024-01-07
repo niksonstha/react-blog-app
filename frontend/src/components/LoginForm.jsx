@@ -20,6 +20,7 @@ const LoginForm = () => {
 
   const HandleLogin = async () => {
     const login = await loginUser(email, password);
+    console.log(login);
     if (login) {
       toast({
         title: "Login Successfull",
