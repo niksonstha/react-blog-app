@@ -18,6 +18,13 @@ const ProfileSideBar = () => {
         >
           <Link to="/profile/updateProfile">Update Profile</Link>
         </ListItem>
+        <ListItem
+          listStyleType={"none"}
+          _hover={{ color: "red" }}
+          cursor={"pointer"}
+        >
+          <Link to="/profile/changePassword">Change Password</Link>
+        </ListItem>
       </UnorderedList>
     </Box>
   );

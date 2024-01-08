@@ -2,7 +2,10 @@ import jwt from "jsonwebtoken";
 const secretKey = "nikson@#$%!shrestha@$&!*";
 
 export const setUser = (user) => {
-  return jwt.sign(user, secretKey);
+  const { _id, email, fullname, username } = user;
+  return jwt.sign({ _id, email, fullname, username }, secretKey, {
+    expiresIn: "1h",
+  });
 };
 export const getUser = (token) => {
   try {

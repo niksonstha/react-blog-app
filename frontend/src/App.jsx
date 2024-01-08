@@ -6,9 +6,9 @@ import LoginScreen from "./screens/LoginScreen";
 import Navbar from "./components/Navbar";
 import ProtectedRoute from "./private/ProtectedRoute";
 import ProfileScreen from "./screens/ProfileScreen";
-import BlogsScreen from "./screens/BlogsScreen";
 import ProfileInfo from "./components/ProfileInfo";
 import UpdateProfile from "./components/UpdateProfile";
+import ChangePassword from "./components/ChangePassword";
 
 function App() {
   const location = useLocation();
@@ -16,21 +16,22 @@ function App() {
   return (
     <Box>
       {!["/login", "/register"].includes(location.pathname) && <Navbar />}
-      <Routes>
-        <Route path="/register" element={<RegisterScreen />} />
-        <Route path="/login" element={<LoginScreen />} />
+      <Box display={"flex"}>
+        <Routes>
+          <Route path="/register" element={<RegisterScreen />} />
+          <Route path="/login" element={<LoginScreen />} />
 
-        <Route element={<ProtectedRoute />}>
-          <Route path="/" element={<HomeScreen />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/" element={<HomeScreen />} />
 
-          <Route path="/profile/" element={<ProfileScreen />}>
-            <Route path="userInfo" element={<ProfileInfo />} />
-            <Route path="updateProfile" element={<UpdateProfile />} />
+            <Route path="/profile/" element={<ProfileScreen />}>
+              <Route path="userInfo" element={<ProfileInfo />} />
+              <Route path="updateProfile" element={<UpdateProfile />} />
+              <Route path="changePassword" element={<ChangePassword />} />
+            </Route>
           </Route>
-
-          <Route path="/blog" element={<BlogsScreen />} />
-        </Route>
-      </Routes>
+        </Routes>
+      </Box>
     </Box>
   );
 }

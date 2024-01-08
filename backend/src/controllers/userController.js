@@ -34,7 +34,7 @@ export const loginUser = async (req, res) => {
       email: req.body.email,
       password: req.body.password,
     });
-    console.log(loginUser);
+
     const token = setUser(loginUser.toObject());
 
     res
@@ -45,7 +45,6 @@ export const loginUser = async (req, res) => {
         message: `Welcome ${loginUser.email}`,
       });
   } catch (err) {
-    console.log(err);
     res.status(500).json({ error: err.message });
   }
 };
@@ -58,6 +57,31 @@ export const updateUser = async (req, res) => {
     res.status(201).json(getUserById);
   } catch (err) {
     res.status(500).json({ error: err.message });
+  }
+};
+
+export const changePassword = async (req, res) => {
+  try {
+    const { currentPassword, newPassword } = req.body;
+    const id = req.params.id;
+
+    const user = await User.findOne({ _id: id });
+
+    // Check if the user exists
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    if (user.password !== currentPassword) {
+      return res.status(401).json({ error: "Invalid current password" });
+    }
+
+    const changePassword = await User.findByIdAndUpdate(id, {
+      password: newPassword,
+    });
+    res.status(200).json({ message: "Password updated successfully" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 };
 

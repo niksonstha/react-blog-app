@@ -21,11 +21,13 @@ const userSchema = new Schema(
     },
     password: {
       type: String,
-      select: false, // Hide the password field when querying a document.
       required: [true, "Password is required"],
     },
   },
   { timestamps: true }
 );
+userSchema.methods.comparePassword = async function (candidatePassword) {
+  return bcrypt.compare(candidatePassword, this.password);
+};
 
 export const User = model("User", userSchema);

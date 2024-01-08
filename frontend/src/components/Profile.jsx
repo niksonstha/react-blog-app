@@ -10,7 +10,7 @@ const Profile = ({ onClick }) => {
     navigate("/login");
   };
   return (
-    <Box width={"200px"} padding={4} onClick={onClick}>
+    <Box width={"200px"} padding={4} onClick={onClick} color={"black"}>
       <UnorderedList display={"flex"} flexDirection={"column"} gap={3}>
         <ListItem
           listStyleType={"none"}

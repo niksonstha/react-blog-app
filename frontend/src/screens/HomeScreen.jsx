@@ -1,10 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Box, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
+import Banner from "../components/Banner";
 
 const HomeScreen = () => {
   return (
     <Box>
-      <Text>Home Page</Text>
+      <Banner />
     </Box>
   );
 };

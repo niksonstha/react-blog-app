@@ -22,14 +22,12 @@ const Navbar = () => {
   return (
     <Box
       as="nav"
-      bgColor="#7D7C7C"
-      height={"4rem"}
+      // bgColor="#7D7C7C"
+      height={"5rem"}
       display={"flex"}
       justifyContent={"space-between"}
       alignItems={"center"}
-      color={"black"}
       overflowX={"hidden"}
-      overflowY={"hidden"}
       transition={"all 0.3s ease-in"}
     >
       <Heading
@@ -39,13 +37,13 @@ const Navbar = () => {
         cursor={"pointer"}
         letterSpacing={4}
       >
-        <NavLink to={"/"}>Blogify</NavLink>
+        <NavLink to={"/"}>ImNIXON</NavLink>
       </Heading>
       <UnorderedList
         display={[`${nav ? "flex" : "none"}`, `${nav}`, "flex"]}
         flexDirection={["column", "column", "row"]}
         gap={10}
-        fontSize={"1.2rem"}
+        fontSize={"1rem"}
         fontWeight={500}
         position={nav && ["absolute", "absolute"]}
         top={"4rem"}
@@ -58,13 +56,14 @@ const Navbar = () => {
         <ListItem
           listStyleType={"none"}
           cursor={"pointer"}
+          color={"white"}
           transition={"all 0.2s ease-in"}
           _hover={{ color: "#F1EFEF" }}
           letterSpacing={2}
         >
           <NavLink
             to={"/"}
-            style={{ color: location.pathname === "/" ? "#CCC8AA" : "#000" }}
+            style={{ color: location.pathname === "/" ? "#CCC8AA" : "white" }}
           >
             Home
           </NavLink>
@@ -79,7 +78,7 @@ const Navbar = () => {
           <NavLink
             to={"/about"}
             style={{
-              color: location.pathname === "/about" ? "#CCC8AA" : "#000",
+              color: location.pathname === "/about" ? "#CCC8AA" : "white",
             }}
           >
             About Us
@@ -95,7 +94,7 @@ const Navbar = () => {
           <NavLink
             to={"/contact"}
             style={{
-              color: location.pathname === "/contact" ? "#CCC8AA" : "#000",
+              color: location.pathname === "/contact" ? "#CCC8AA" : "white",
             }}
           >
             Contact Us
@@ -109,12 +108,12 @@ const Navbar = () => {
           letterSpacing={2}
         >
           <NavLink
-            to={"/blog"}
+            to={"/products"}
             style={{
-              color: location.pathname === "/blog" ? "#CCC8AA" : "#000",
+              color: location.pathname === "/blog" ? "#CCC8AA" : "white",
             }}
           >
-            Blogs
+            Products
           </NavLink>
         </ListItem>
       </UnorderedList>
@@ -128,6 +127,7 @@ const Navbar = () => {
           cursor={"pointer"}
           pos={"relative"}
           onClick={profileHandler}
+          color={"black"}
         >
           <FaUser />
         </Box>
@@ -140,6 +140,7 @@ const Navbar = () => {
           transition={"opacity 0.3s ease-in-out"}
           opacity={showProfile ? 1 : 0}
           pointerEvents={showProfile ? "all" : "none"}
+          zIndex={1000}
         >
           {showProfile && <Profile onClick={profileHandler} />}
         </Box>
