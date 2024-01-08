@@ -21,7 +21,17 @@ const Banner = () => {
   ];
 
   return (
-    <Box ml={"auto"} mr={"auto"} width={"80%"}>
+    <Box ml={"auto"} mr={"auto"} width={"80%"} pos={"relative"}>
+      <Box
+        style={{
+          background:
+            "linear-gradient(360deg, rgba(255,255,255,0) 20%, rgba(25,23,23,1) 90%)",
+        }}
+        width={"100%"}
+        height={"3rem"}
+        pos={"absolute"}
+        zIndex={100}
+      />
       <Carousel
         emulateTouch={true}
         autoPlay={true}
@@ -31,7 +41,7 @@ const Banner = () => {
       >
         {imageUrls.map((url, index) => (
           <Box key={index}>
-            <Image src={url} height={"60vh"} objectFit={"cover"} />
+            <Image src={url} height={"70vh"} objectFit={"cover"} />
             <Box
               style={{
                 position: "absolute",
@@ -45,6 +55,16 @@ const Banner = () => {
           </Box>
         ))}
       </Carousel>
+      <Box
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(255,255,255,0) 20%, rgba(25,23,23,1) 77%)",
+        }}
+        width={"100%"}
+        height={"6rem"}
+        pos={"absolute"}
+        bottom={"10px"}
+      />
     </Box>
   );
 };
