@@ -14,9 +14,9 @@ function App() {
   const location = useLocation();
 
   return (
-    <Box>
+    <Box height={"200vh"}>
       {!["/login", "/register"].includes(location.pathname) && <Navbar />}
-      <Box display={"flex"}>
+      <Box>
         <Routes>
           <Route path="/register" element={<RegisterScreen />} />
           <Route path="/login" element={<LoginScreen />} />

@@ -28,9 +28,9 @@ const Banner = () => {
             "linear-gradient(360deg, rgba(255,255,255,0) 20%, rgba(25,23,23,1) 90%)",
         }}
         width={"100%"}
-        height={"3rem"}
+        height={"1rem"}
         pos={"absolute"}
-        zIndex={100}
+        zIndex={10}
       />
       <Carousel
         emulateTouch={true}
@@ -63,7 +63,7 @@ const Banner = () => {
         width={"100%"}
         height={"6rem"}
         pos={"absolute"}
-        bottom={"10px"}
+        bottom={0}
       />
     </Box>
   );
