@@ -9,7 +9,7 @@ const ProfileSideBar = () => {
           _hover={{ color: "red" }}
           cursor={"pointer"}
         >
-          <Link to="/profile/userInfo">Profile</Link>
+          <Link to="/profile/">Profile</Link>
         </ListItem>
         <ListItem
           listStyleType={"none"}

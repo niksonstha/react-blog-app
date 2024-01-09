@@ -1,9 +1,12 @@
 export const theme = {
   styles: {
     global: () => ({
+      "*": {
+        boxSizing: "border-box",
+      },
       body: {
         backgroundColor: "#191717",
-        fontFamily: `'Poppins', sans-serif, 'Long Cang', cursive`,
+        fontFamily: `'Poppins', sans-serif,'Nunito', sans-serif,'Long Cang', cursive`,
         color: "white",
       },
 

@@ -33,7 +33,7 @@ const Navbar = () => {
       <Heading
         ml={10}
         fontFamily={"'Long Cang', cursive"}
-        fontSize={["2rem", "2.2rem", "3rem"]}
+        fontSize={"2rem"}
         cursor={"pointer"}
         letterSpacing={4}
       >

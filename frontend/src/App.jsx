@@ -9,12 +9,13 @@ import ProfileScreen from "./screens/ProfileScreen";
 import ProfileInfo from "./components/ProfileInfo";
 import UpdateProfile from "./components/UpdateProfile";
 import ChangePassword from "./components/ChangePassword";
+import Products from "./screens/Products";
 
 function App() {
   const location = useLocation();
 
   return (
-    <Box height={"200vh"}>
+    <Box>
       {!["/login", "/register"].includes(location.pathname) && <Navbar />}
       <Box>
         <Routes>
@@ -25,10 +26,12 @@ function App() {
             <Route path="/" element={<HomeScreen />} />
 
             <Route path="/profile/" element={<ProfileScreen />}>
-              <Route path="userInfo" element={<ProfileInfo />} />
+              <Route path="" element={<ProfileInfo />} />
               <Route path="updateProfile" element={<UpdateProfile />} />
               <Route path="changePassword" element={<ChangePassword />} />
             </Route>
+
+            <Route path="products" element={<Products />} />
           </Route>
         </Routes>
       </Box>
