@@ -9,13 +9,14 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { adminRegister } from "../api/api";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const AdminRegistrationForm = () => {
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const toast = useToast();
+  const navigate = useNavigate();
 
   const handleRegister = async () => {
     const register = await adminRegister(fullname, email, password);
@@ -27,6 +28,7 @@ const AdminRegistrationForm = () => {
         duration: 5000,
         isClosable: true,
       });
+      navigate("/admin/login");
     }
 
     setFullname("");

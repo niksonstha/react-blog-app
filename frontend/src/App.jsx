@@ -16,15 +16,20 @@ import ProductsScreen from "./user/screens/ProductsScreen";
 // ? Admin
 import AdminRegisterScreen from "./admin/screen/AdminRegisterScreen";
 import AdminLoginScreen from "./admin/screen/AdminLoginScreen";
+import AdminDashboard from "./admin/screen/AdminDashboard";
 
 function App() {
   const location = useLocation();
 
   return (
     <Box>
-      {!["/login", "/register", "/admin/register", "/admin/login"].includes(
-        location.pathname
-      ) && <Navbar />}
+      {![
+        "/login",
+        "/register",
+        "/admin/register",
+        "/admin/login",
+        "/admin/dashboard",
+      ].includes(location.pathname) && <Navbar />}
       <Box>
         <Routes>
           {/* User Side Routes */}
@@ -46,6 +51,7 @@ function App() {
           {/*  Admin Side Routes */}
           <Route path="/admin/register" element={<AdminRegisterScreen />} />
           <Route path="/admin/login" element={<AdminLoginScreen />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
         </Routes>
       </Box>
     </Box>

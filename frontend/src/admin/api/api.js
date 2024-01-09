@@ -12,3 +12,20 @@ export const adminRegister = async (fullname, email, password) => {
     console.log(error);
   }
 };
+export const adminLogin = async (email, password) => {
+  try {
+    const response = await axios.post(
+      import.meta.env.VITE_ADMIN_LOGIN_URL,
+      {
+        email,
+        password,
+      },
+      {
+        withCredentials: true,
+      }
+    );
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};

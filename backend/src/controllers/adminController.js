@@ -35,11 +35,13 @@ export const loginAdmin = async (req, res) => {
 
     // Passwords match - admin is authenticated
     const token = setAdmin(admin.toObject());
+    console.log(token);
 
     res
       .status(200)
-      .cookie("uid", token, {
+      .cookie("aid", token, {
         expires: new Date(Date.now() + 2592000000),
+        httpOnly: true,
       })
       .json({
         success: true,

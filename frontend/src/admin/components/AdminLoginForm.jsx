@@ -8,38 +8,40 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useState } from "react";
-// import { loginUser } from "../api/api";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { FaEyeSlash } from "react-icons/fa";
+import { adminLogin } from "../api/api";
 
 const AdminLoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [viewPassword, setViewPassword] = useState(true);
-  //   const toast = useToast();
+  const toast = useToast();
+  const navigate = useNavigate();
 
-  //   const HandleLogin = async () => {
-  //     const login = await loginUser(email, password);
-  //     console.log(login);
-  //     if (login) {
-  //       toast({
-  //         title: "Login Successfull",
-  //         status: "success",
-  //         duration: 2000,
-  //         isClosable: true,
-  //       });
-  //     } else {
-  //       toast({
-  //         title: "Please use valid email and password",
-  //         status: "error",
-  //         duration: 2000,
-  //         isClosable: true,
-  //       });
-  //     }
+  const HandleLogin = async () => {
+    const login = await adminLogin(email, password);
+    console.log(login);
+    if (login) {
+      toast({
+        title: "Login Successfull",
+        status: "success",
+        duration: 2000,
+        isClosable: true,
+      });
+      navigate("/admin/dashboard");
+    } else {
+      toast({
+        title: "Please use valid email and password",
+        status: "error",
+        duration: 2000,
+        isClosable: true,
+      });
+    }
 
-  //     setEmail("");
-  //     setPassword("");
-  //   };
+    setEmail("");
+    setPassword("");
+  };
 
   return (
     <Box width={"90%"} mb={5}>
@@ -84,7 +86,7 @@ const AdminLoginForm = () => {
             />
           </Box>
         </Box>
-        <Button colorScheme="teal" width={"30%"}>
+        <Button colorScheme="teal" width={"30%"} onClick={HandleLogin}>
           Login
         </Button>
       </FormControl>
