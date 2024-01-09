@@ -1,6 +1,6 @@
 // userController.js
 import { User } from "../model/userSchema.js";
-import { setUser } from "../services/auth.js";
+import { setUser } from "../services/userAuth.js";
 import bcrypt from "bcryptjs";
 
 export const createUser = async (req, res) => {

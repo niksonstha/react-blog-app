@@ -1,4 +1,6 @@
 import { Admin } from "../model/adminSchema.js";
+import bcrypt from "bcryptjs";
+import { setAdmin } from "../services/adminauth.js";
 
 export const registerAdmin = async (req, res) => {
   try {
@@ -8,6 +10,41 @@ export const registerAdmin = async (req, res) => {
       password: req.body.password,
     });
     res.status(200).json(registerAdmin);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+export const loginAdmin = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    // Find the admin by email
+    const admin = await Admin.findOne({ email });
+
+    if (!admin) {
+      return res.status(401).json({ error: "Invalid email or password" });
+    }
+
+    // Compare provided password with the hashed password in the database
+    const isPasswordMatch = await bcrypt.compare(password, admin.password);
+
+    if (!isPasswordMatch) {
+      return res.status(401).json({ error: "Invalid email or password" });
+    }
+
+    // Passwords match - admin is authenticated
+    const token = setAdmin(admin.toObject());
+
+    res
+      .status(200)
+      .cookie("uid", token, {
+        expires: new Date(Date.now() + 2592000000),
+      })
+      .json({
+        success: true,
+        message: `Welcome ${admin.fullname}`,
+      });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
