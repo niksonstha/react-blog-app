@@ -1,7 +1,9 @@
 /* eslint-disable react/prop-types */
-import { Box, UnorderedList, ListItem } from "@chakra-ui/react";
+import { Box, UnorderedList, ListItem, Text } from "@chakra-ui/react";
 import Cookies from "js-cookie";
 import { NavLink, useNavigate } from "react-router-dom";
+import { FaUser } from "react-icons/fa";
+import { IoLogOut } from "react-icons/io5";
 const Profile = ({ onClick }) => {
   const navigate = useNavigate();
 
@@ -16,7 +18,11 @@ const Profile = ({ onClick }) => {
           listStyleType={"none"}
           cursor={"pointer"}
           _hover={{ color: "red", fontWeight: "bold" }}
+          display={"flex"}
+          alignItems={"center"}
+          gap={2}
         >
+          <FaUser />
           <NavLink to={"/profile"}>Profle</NavLink>
         </ListItem>
 
@@ -25,8 +31,12 @@ const Profile = ({ onClick }) => {
           onClick={logoutHandler}
           cursor={"pointer"}
           _hover={{ color: "red", fontWeight: "bold" }}
+          display={"flex"}
+          alignItems={"center"}
+          gap={2}
         >
-          Logout
+          <IoLogOut fontSize={"1.3rem"} />
+          <Text>Logout</Text>
         </ListItem>
       </UnorderedList>
     </Box>

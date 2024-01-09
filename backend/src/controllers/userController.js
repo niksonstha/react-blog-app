@@ -53,7 +53,7 @@ export const loginUser = async (req, res) => {
     res
       .status(200)
       .cookie("uid", token, {
-        expires: new Date(Date.now() + 5000),
+        expires: new Date(Date.now() + 2592000000),
       })
       .json({
         success: true,

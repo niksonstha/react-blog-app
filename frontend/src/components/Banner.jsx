@@ -38,6 +38,7 @@ const Banner = () => {
         interval={3000}
         infiniteLoop={true}
         showStatus={false}
+        showThumbs={false}
       >
         {imageUrls.map((url, index) => (
           <Box key={index}>
