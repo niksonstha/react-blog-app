@@ -24,7 +24,7 @@ const Banner = () => {
     <Box
       ml={"auto"}
       mr={"auto"}
-      width={["100%", "100%", "80%"]}
+      width={["100%", "100%", "100%", "80%"]}
       pos={"relative"}
       style={{
         "scroll-snap-align": "start",

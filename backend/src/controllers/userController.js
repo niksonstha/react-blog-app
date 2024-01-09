@@ -80,20 +80,30 @@ export const changePassword = async (req, res) => {
     const { currentPassword, newPassword } = req.body;
     const id = req.params.id;
 
-    const user = await User.findOne({ _id: id });
+    const user = await User.findById(id);
 
     // Check if the user exists
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
 
-    if (user.password !== currentPassword) {
+    // Compare the current password with the hashed password from the database
+    const isPasswordMatch = await bcrypt.compare(
+      currentPassword,
+      user.password
+    );
+
+    if (!isPasswordMatch) {
       return res.status(401).json({ error: "Invalid current password" });
     }
 
-    const changePassword = await User.findByIdAndUpdate(id, {
-      password: newPassword,
-    });
+    // Hash the new password before updating
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(newPassword, salt);
+
+    // Update the user's password with the hashed new password
+    await User.findByIdAndUpdate(id, { password: hashedPassword });
+
     res.status(200).json({ message: "Password updated successfully" });
   } catch (error) {
     res.status(500).json({ error: error.message });
