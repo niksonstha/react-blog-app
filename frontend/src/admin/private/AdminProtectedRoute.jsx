@@ -5,16 +5,17 @@ import { Outlet, useNavigate } from "react-router-dom";
 const AdminProtectedRoute = () => {
   const navigate = useNavigate();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const validateUser = () => {
+  const validateAdmin = () => {
     const cookie = Cookies.get("aid");
+    console.log(cookie);
 
     if (!cookie) {
-      navigate("/login");
+      navigate("/admin/login");
     }
   };
   useEffect(() => {
-    validateUser();
-  }, [validateUser]);
+    validateAdmin();
+  }, [validateAdmin]);
   return <Outlet />;
 };
 

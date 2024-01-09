@@ -41,7 +41,6 @@ export const loginAdmin = async (req, res) => {
       .status(200)
       .cookie("aid", token, {
         expires: new Date(Date.now() + 2592000000),
-        httpOnly: true,
       })
       .json({
         success: true,

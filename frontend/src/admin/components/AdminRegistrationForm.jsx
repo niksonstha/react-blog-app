@@ -7,9 +7,10 @@ import {
   useToast,
   Text,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { adminRegister } from "../api/api";
 import { NavLink, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const AdminRegistrationForm = () => {
   const [fullname, setFullname] = useState("");
@@ -35,6 +36,18 @@ const AdminRegistrationForm = () => {
     setEmail("");
     setPassword("");
   };
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const validateAdmin = () => {
+    const cookie = Cookies.get("aid");
+
+    if (cookie) {
+      navigate("/admin/dashboard");
+    }
+  };
+  useEffect(() => {
+    validateAdmin();
+  }, [validateAdmin]);
 
   return (
     <Box width={"90%"} mb={5}>

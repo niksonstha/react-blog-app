@@ -7,10 +7,11 @@ import {
   useToast,
   Text,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { FaEyeSlash } from "react-icons/fa";
 import { adminLogin } from "../api/api";
+import Cookies from "js-cookie";
 
 const AdminLoginForm = () => {
   const [email, setEmail] = useState("");
@@ -42,7 +43,17 @@ const AdminLoginForm = () => {
     setEmail("");
     setPassword("");
   };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const validateAdmin = () => {
+    const cookie = Cookies.get("aid");
 
+    if (cookie) {
+      navigate("/admin/dashboard");
+    }
+  };
+  useEffect(() => {
+    validateAdmin();
+  }, [validateAdmin]);
   return (
     <Box width={"90%"} mb={5}>
       <FormControl display="flex" gap={5} flexDirection={"column"}>

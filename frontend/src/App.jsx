@@ -17,6 +17,7 @@ import ProductsScreen from "./user/screens/ProductsScreen";
 import AdminRegisterScreen from "./admin/screen/AdminRegisterScreen";
 import AdminLoginScreen from "./admin/screen/AdminLoginScreen";
 import AdminDashboard from "./admin/screen/AdminDashboard";
+import AdminProtectedRoute from "./admin/private/AdminProtectedRoute";
 
 function App() {
   const location = useLocation();
@@ -51,7 +52,10 @@ function App() {
           {/*  Admin Side Routes */}
           <Route path="/admin/register" element={<AdminRegisterScreen />} />
           <Route path="/admin/login" element={<AdminLoginScreen />} />
-          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+
+          <Route element={<AdminProtectedRoute />}>
+            <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          </Route>
         </Routes>
       </Box>
     </Box>
