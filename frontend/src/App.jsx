@@ -1,15 +1,15 @@
 import { Box } from "@chakra-ui/react";
 import { Routes, Route, useLocation } from "react-router-dom";
-import RegisterScreen from "./screens/RegisterScreen";
-import HomeScreen from "./screens/HomeScreen";
-import LoginScreen from "./screens/LoginScreen";
-import Navbar from "./components/Navbar";
-import ProtectedRoute from "./private/ProtectedRoute";
-import ProfileScreen from "./screens/ProfileScreen";
-import ProfileInfo from "./components/ProfileInfo";
-import UpdateProfile from "./components/UpdateProfile";
-import ChangePassword from "./components/ChangePassword";
-import ProductsScreen from "./screens/ProductsScreen";
+import RegisterScreen from "./user/screens/RegisterScreen";
+import HomeScreen from "./user/screens/HomeScreen";
+import LoginScreen from "./user/screens/LoginScreen";
+import Navbar from "./user/components/Navbar";
+import ProtectedRoute from "./user/private/ProtectedRoute";
+import ProfileScreen from "./user/screens/ProfileScreen";
+import ProfileInfo from "./user/components/ProfileInfo";
+import UpdateProfile from "./user/components/UpdateProfile";
+import ChangePassword from "./user/components/ChangePassword";
+import ProductsScreen from "./user/screens/ProductsScreen";
 
 function App() {
   const location = useLocation();
