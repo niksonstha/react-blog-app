@@ -30,7 +30,7 @@ const Navbar = () => {
       overflowX={"hidden"}
       transition={"all 0.3s ease-in"}
       style={{
-        "scroll-snap-align": "start",
+        scrollSnapAlign: "start",
       }}
     >
       <Heading

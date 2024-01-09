@@ -7,7 +7,7 @@ const ProductsScreen = () => {
       ml={"auto"}
       mr={"auto"}
       style={{
-        "scroll-snap-align": "start",
+        scrollSnapAlign: "start",
       }}
     >
       <Heading

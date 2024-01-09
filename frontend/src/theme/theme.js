@@ -2,7 +2,7 @@ export const theme = {
   styles: {
     global: () => ({
       html: {
-        "scroll-snap-type": "y proximity",
+        scrollSnapType: "y proximity",
       },
       "*": {
         boxSizing: "border-box",

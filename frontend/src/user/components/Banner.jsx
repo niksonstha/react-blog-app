@@ -27,7 +27,7 @@ const Banner = () => {
       width={["100%", "100%", "100%", "80%"]}
       pos={"relative"}
       style={{
-        "scroll-snap-align": "start",
+        scrollSnapAlign: "start",
       }}
     >
       <Box

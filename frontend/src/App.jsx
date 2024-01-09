@@ -1,5 +1,7 @@
 import { Box } from "@chakra-ui/react";
 import { Routes, Route, useLocation } from "react-router-dom";
+
+// ? User
 import RegisterScreen from "./user/screens/RegisterScreen";
 import HomeScreen from "./user/screens/HomeScreen";
 import LoginScreen from "./user/screens/LoginScreen";
@@ -10,18 +12,22 @@ import ProfileInfo from "./user/components/ProfileInfo";
 import UpdateProfile from "./user/components/UpdateProfile";
 import ChangePassword from "./user/components/ChangePassword";
 import ProductsScreen from "./user/screens/ProductsScreen";
-import AdminHomeScreen from "./admin/screen/AdminHomeScreen";
+
+// ? Admin
+import AdminRegisterScreen from "./admin/screen/AdminRegisterScreen";
+import AdminLoginScreen from "./admin/screen/AdminLoginScreen";
 
 function App() {
   const location = useLocation();
 
   return (
     <Box>
-      {!["/login", "/register", "/admin/register"].includes(
+      {!["/login", "/register", "/admin/register", "/admin/login"].includes(
         location.pathname
       ) && <Navbar />}
       <Box>
         <Routes>
+          {/* User Side Routes */}
           <Route path="/register" element={<RegisterScreen />} />
           <Route path="/login" element={<LoginScreen />} />
 
@@ -36,10 +42,10 @@ function App() {
 
             <Route path="products" element={<ProductsScreen />} />
           </Route>
-        </Routes>
 
-        <Routes>
-          <Route path="/admin/register" element={<AdminHomeScreen />} />
+          {/*  Admin Side Routes */}
+          <Route path="/admin/register" element={<AdminRegisterScreen />} />
+          <Route path="/admin/login" element={<AdminLoginScreen />} />
         </Routes>
       </Box>
     </Box>
