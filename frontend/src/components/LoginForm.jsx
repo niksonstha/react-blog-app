@@ -11,10 +11,12 @@ import { useEffect, useState } from "react";
 import { loginUser } from "../api/api";
 import { NavLink, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import { FaEyeSlash } from "react-icons/fa";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [viewPassword, setViewPassword] = useState(true);
   const toast = useToast();
   const navigate = useNavigate();
 
@@ -71,11 +73,11 @@ const LoginForm = () => {
           />
         </Box>
 
-        <Box>
+        <Box pos={"relative"}>
           <FormLabel htmlFor="password">Password</FormLabel>
           <Input
             id="password"
-            type="password"
+            type={viewPassword ? "password" : "text"}
             bgColor={"#F1EFEF"}
             outline={"none"}
             border={"none"}
@@ -83,6 +85,19 @@ const LoginForm = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          <Box
+            as="span"
+            pos={"absolute"}
+            right={2}
+            bottom={3}
+            zIndex={10}
+            userSelect={"none"}
+          >
+            <FaEyeSlash
+              onClick={() => setViewPassword(!viewPassword)}
+              cursor={"pointer"}
+            />
+          </Box>
         </Box>
         <Button colorScheme="teal" width={"30%"} onClick={HandleLogin}>
           Login
