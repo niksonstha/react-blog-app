@@ -10,13 +10,16 @@ import ProfileInfo from "./user/components/ProfileInfo";
 import UpdateProfile from "./user/components/UpdateProfile";
 import ChangePassword from "./user/components/ChangePassword";
 import ProductsScreen from "./user/screens/ProductsScreen";
+import AdminHomeScreen from "./admin/screen/AdminHomeScreen";
 
 function App() {
   const location = useLocation();
 
   return (
     <Box>
-      {!["/login", "/register"].includes(location.pathname) && <Navbar />}
+      {!["/login", "/register", "/admin/register"].includes(
+        location.pathname
+      ) && <Navbar />}
       <Box>
         <Routes>
           <Route path="/register" element={<RegisterScreen />} />
@@ -33,6 +36,10 @@ function App() {
 
             <Route path="products" element={<ProductsScreen />} />
           </Route>
+        </Routes>
+
+        <Routes>
+          <Route path="/admin/register" element={<AdminHomeScreen />} />
         </Routes>
       </Box>
     </Box>
