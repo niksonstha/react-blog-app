@@ -34,9 +34,9 @@ const Navbar = () => {
       }}
     >
       <Heading
-        ml={10}
+        ml={[2, 5, 7, 10]}
         fontFamily={"'Long Cang', cursive"}
-        fontSize={"2rem"}
+        fontSize={["1.3rem", "1.5rem", "2rem"]}
         cursor={"pointer"}
         letterSpacing={4}
       >
@@ -133,6 +133,7 @@ const Navbar = () => {
           pos={"relative"}
           onClick={profileHandler}
           color={"black"}
+          fontSize={["0.8rem", "1rem"]}
         >
           <FaUser />
         </Box>
