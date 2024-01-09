@@ -21,7 +21,15 @@ const Banner = () => {
   ];
 
   return (
-    <Box ml={"auto"} mr={"auto"} width={"80%"} pos={"relative"}>
+    <Box
+      ml={"auto"}
+      mr={"auto"}
+      width={["100%", "100%", "80%"]}
+      pos={"relative"}
+      style={{
+        "scroll-snap-align": "start",
+      }}
+    >
       <Box
         style={{
           background:
@@ -42,7 +50,11 @@ const Banner = () => {
       >
         {imageUrls.map((url, index) => (
           <Box key={index}>
-            <Image src={url} height={"70vh"} objectFit={"cover"} />
+            <Image
+              src={url}
+              height={["30vh", "40vh", "70vh"]}
+              objectFit={"cover"}
+            />
             <Box
               style={{
                 position: "absolute",

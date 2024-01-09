@@ -29,6 +29,9 @@ const Navbar = () => {
       alignItems={"center"}
       overflowX={"hidden"}
       transition={"all 0.3s ease-in"}
+      style={{
+        "scroll-snap-align": "start",
+      }}
     >
       <Heading
         ml={10}
@@ -42,16 +45,18 @@ const Navbar = () => {
       <UnorderedList
         display={[`${nav ? "flex" : "none"}`, `${nav}`, "flex"]}
         flexDirection={["column", "column", "row"]}
+        margin={0}
         gap={10}
         fontSize={"1rem"}
         fontWeight={500}
         position={nav && ["absolute", "absolute"]}
         top={"4rem"}
-        left={-5}
+        // left={-5}
         bgColor={["#7D7C7C", "#7D7C7C", "transparent"]}
         width={["100%", "100%", "auto"]}
-        zIndex={"10"}
+        zIndex={20}
         padding={5}
+        onClick={() => setNav(false)}
       >
         <ListItem
           listStyleType={"none"}

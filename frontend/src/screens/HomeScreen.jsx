@@ -1,15 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Box } from "@chakra-ui/react";
 import Banner from "../components/Banner";
-import Products from "./Products";
+import ProductsScreen from "./ProductsScreen";
 
 const HomeScreen = () => {
   return (
     <Box mb={"200px"}>
-      <Box>
-        <Banner />
-        <Products />
-      </Box>
+      <Banner />
+      <ProductsScreen />
     </Box>
   );
 };

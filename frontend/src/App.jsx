@@ -9,7 +9,7 @@ import ProfileScreen from "./screens/ProfileScreen";
 import ProfileInfo from "./components/ProfileInfo";
 import UpdateProfile from "./components/UpdateProfile";
 import ChangePassword from "./components/ChangePassword";
-import Products from "./screens/Products";
+import ProductsScreen from "./screens/ProductsScreen";
 
 function App() {
   const location = useLocation();
@@ -31,7 +31,7 @@ function App() {
               <Route path="changePassword" element={<ChangePassword />} />
             </Route>
 
-            <Route path="products" element={<Products />} />
+            <Route path="products" element={<ProductsScreen />} />
           </Route>
         </Routes>
       </Box>
