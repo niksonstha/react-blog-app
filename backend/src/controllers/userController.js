@@ -1,6 +1,7 @@
 // userController.js
 import { User } from "../model/userSchema.js";
 import { setUser } from "../services/auth.js";
+import bcrypt from "bcryptjs";
 
 export const createUser = async (req, res) => {
   try {
@@ -30,19 +31,33 @@ export const getAllUser = async (req, res) => {
 
 export const loginUser = async (req, res) => {
   try {
-    const loginUser = await User.findOne({
-      email: req.body.email,
-      password: req.body.password,
-    });
+    const { email, password } = req.body;
 
-    const token = setUser(loginUser.toObject());
+    // Find the user by email
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(401).json({ error: "Invalid email or password" });
+    }
+
+    // Compare provided password with the hashed password in the database
+    const isPasswordMatch = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordMatch) {
+      return res.status(401).json({ error: "Invalid email or password" });
+    }
+
+    // Passwords match - user is authenticated
+    const token = setUser(user.toObject());
 
     res
       .status(200)
-      .cookie("uid", token)
+      .cookie("uid", token, {
+        expires: new Date(Date.now() + 5000),
+      })
       .json({
-        success: "ok",
-        message: `Welcome ${loginUser.email}`,
+        success: true,
+        message: `Welcome ${user.email}`,
       });
   } catch (err) {
     res.status(500).json({ error: err.message });
