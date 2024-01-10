@@ -1,14 +1,37 @@
+/* eslint-disable react/prop-types */
 import { Box, Heading, UnorderedList, ListItem, Text } from "@chakra-ui/react";
 import { MdDashboard, MdCategory, MdOutlineMenuBook } from "react-icons/md";
 import { HiMiniUsers } from "react-icons/hi2";
 import { NavLink } from "react-router-dom";
+import { RxCross1 } from "react-icons/rx";
 
-const Sidebar = () => {
+const Sidebar = ({ handleSidebar }) => {
   return (
     <Box bgColor={"#7D7C7C"} height={"100vh"} color={"black"}>
-      <Heading fontFamily={"Long Cang"} textAlign={"center"} fontSize={"4rem"}>
-        Bhojan
-      </Heading>
+      <Box
+        display={"flex"}
+        justifyContent={"space-between"}
+        alignItems={"center"}
+      >
+        <Heading
+          fontFamily={"Long Cang"}
+          textAlign={"center"}
+          fontSize={"4rem"}
+          ml={3}
+          cursor={"pointer"}
+          userSelect={"none"}
+        >
+          Bhojan
+        </Heading>
+
+        <Box as="span" mr={3}>
+          <RxCross1
+            fontSize={"1.4rem"}
+            cursor={"pointer"}
+            onClick={handleSidebar}
+          />
+        </Box>
+      </Box>
 
       <UnorderedList
         listStyleType={"none"}

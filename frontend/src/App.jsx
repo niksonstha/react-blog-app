@@ -21,6 +21,7 @@ import AdminProtectedRoute from "./admin/private/AdminProtectedRoute";
 import CustomerListScreen from "./admin/screen/CustomerListScreen";
 import CategoryAddScreen from "./admin/screen/CategoryAddScreen";
 import MenuAddScreen from "./admin/screen/MenuAddScreen";
+import DashboardScreen from "./admin/screen/DashboardScreen";
 
 function App() {
   const location = useLocation();
@@ -61,6 +62,7 @@ function App() {
 
           <Route element={<AdminProtectedRoute />}>
             <Route path="/admin/dashboard/" element={<AdminDashboard />}>
+              <Route path="" element={<DashboardScreen />} />
               <Route path="customers" element={<CustomerListScreen />} />
               <Route path="category" element={<CategoryAddScreen />} />
               <Route path="menu" element={<MenuAddScreen />} />

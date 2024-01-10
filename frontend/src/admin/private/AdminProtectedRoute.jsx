@@ -7,7 +7,6 @@ const AdminProtectedRoute = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const validateAdmin = () => {
     const cookie = Cookies.get("aid");
-    console.log(cookie);
 
     if (!cookie) {
       navigate("/admin/login");
