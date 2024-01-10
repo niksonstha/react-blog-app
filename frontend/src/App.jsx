@@ -18,6 +18,9 @@ import AdminRegisterScreen from "./admin/screen/AdminRegisterScreen";
 import AdminLoginScreen from "./admin/screen/AdminLoginScreen";
 import AdminDashboard from "./admin/screen/AdminDashboard";
 import AdminProtectedRoute from "./admin/private/AdminProtectedRoute";
+import CustomerListScreen from "./admin/screen/CustomerListScreen";
+import CategoryAddScreen from "./admin/screen/CategoryAddScreen";
+import MenuAddScreen from "./admin/screen/MenuAddScreen";
 
 function App() {
   const location = useLocation();
@@ -30,6 +33,9 @@ function App() {
         "/admin/register",
         "/admin/login",
         "/admin/dashboard",
+        "/admin/dashboard/customers",
+        "/admin/dashboard/category",
+        "/admin/dashboard/menu",
       ].includes(location.pathname) && <Navbar />}
       <Box>
         <Routes>
@@ -54,7 +60,11 @@ function App() {
           <Route path="/admin/login" element={<AdminLoginScreen />} />
 
           <Route element={<AdminProtectedRoute />}>
-            <Route path="/admin/dashboard" element={<AdminDashboard />} />
+            <Route path="/admin/dashboard/" element={<AdminDashboard />}>
+              <Route path="customers" element={<CustomerListScreen />} />
+              <Route path="category" element={<CategoryAddScreen />} />
+              <Route path="menu" element={<MenuAddScreen />} />
+            </Route>
           </Route>
         </Routes>
       </Box>
