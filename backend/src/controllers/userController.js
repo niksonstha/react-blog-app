@@ -100,16 +100,3 @@ export const changePassword = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
-
-export const deleteUser = async (req, res) => {
-  const id = req.params.id;
-
-  try {
-    const deletUser = await User.findByIdAndDelete(id);
-    res.status(404).json({
-      message: `The user with the id ${id} has been deleted`,
-    });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-};

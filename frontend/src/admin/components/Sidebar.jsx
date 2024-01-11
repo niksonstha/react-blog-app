@@ -17,7 +17,7 @@ const Sidebar = ({ handleSidebar }) => {
         <Heading
           fontFamily={"Long Cang"}
           textAlign={"center"}
-          fontSize={"4rem"}
+          fontSize={["2rem", "2.2rem", "2.4rem", "2.6rem", "3rem"]}
           ml={3}
           cursor={"pointer"}
           userSelect={"none"}
@@ -41,7 +41,11 @@ const Sidebar = ({ handleSidebar }) => {
         flexDirection={"column"}
         gap={5}
         mt={"2rem"}
-        fontSize={"1.3rem"}
+        fontSize={{
+          base: "0.9rem",
+          xl: "1.2rem",
+          xxl: "1.4rem",
+        }}
       >
         <NavLink to={"/admin/dashboard"}>
           <ListItem

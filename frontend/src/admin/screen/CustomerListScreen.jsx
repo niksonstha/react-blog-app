@@ -9,18 +9,26 @@ import {
   Td,
   TableContainer,
   Button,
+  useDisclosure,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import { fetchAllUsers } from "../api/api";
+import { useCallback, useEffect, useState } from "react";
+import { deleteUser, fetchAllUsers } from "../api/api";
 import { motion } from "framer-motion";
+import UserModel from "../components/UserModel";
 
 const CustomerListScreen = () => {
   const [getAllUsers, setGetAllUsers] = useState([]);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const getUsers = async () => {
     const data = await fetchAllUsers();
     setGetAllUsers(data);
   };
+
+  const handleDelete = useCallback(async (id) => {
+    await deleteUser(id);
+    getUsers();
+  }, []);
 
   useEffect(() => {
     getUsers();
@@ -37,13 +45,14 @@ const CustomerListScreen = () => {
       </Heading>
 
       <TableContainer width={"80vw"} ml={"auto"} mr={"auto"}>
-        <Table variant="simple" colorScheme="purple">
+        <Table>
           <Thead>
             <Tr>
               <Th color={"white"}>SN</Th>
               <Th color={"white"}>Fullname</Th>
               <Th color={"white"}>Email</Th>
               <Th color={"white"}>Edit</Th>
+              <Th color={"white"}>Delete</Th>
             </Tr>
           </Thead>
 
@@ -54,13 +63,29 @@ const CustomerListScreen = () => {
                 <Td>{users.fullname}</Td>
                 <Td>{users.email}</Td>
                 <Td>
-                  <Button colorScheme="purple">View</Button>
+                  <Button
+                    colorScheme="purple"
+                    onClick={onOpen}
+                    fontSize={"0.7rem"}
+                  >
+                    View
+                  </Button>
+                </Td>
+                <Td>
+                  <Button
+                    colorScheme="red"
+                    onClick={() => handleDelete(users.id)}
+                    fontSize={"0.7rem"}
+                  >
+                    Delete
+                  </Button>
                 </Td>
               </Tr>
             ))}
           </Tbody>
         </Table>
       </TableContainer>
+      <UserModel isOpen={isOpen} onClose={onClose} />
     </Box>
   );
 };

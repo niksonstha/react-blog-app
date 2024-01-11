@@ -37,3 +37,13 @@ export const fetchAllUsers = async () => {
     console.log(error);
   }
 };
+export const deleteUser = async (id) => {
+  try {
+    const response = await axios.delete(
+      `${import.meta.env.VITE_DELETEUSER_URL}/${id}`
+    );
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
