@@ -27,4 +27,9 @@ export const theme = {
       },
     }),
   },
+  colors: {
+    brand: {
+      100: "#CCC8AA",
+    },
+  },
 };

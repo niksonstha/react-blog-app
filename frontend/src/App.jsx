@@ -22,6 +22,7 @@ import CustomerListScreen from "./admin/screen/CustomerListScreen";
 import CategoryAddScreen from "./admin/screen/CategoryAddScreen";
 import MenuAddScreen from "./admin/screen/MenuAddScreen";
 import DashboardScreen from "./admin/screen/DashboardScreen";
+import OrdersScreen from "./admin/screen/OrdersScreen";
 
 function App() {
   const location = useLocation();
@@ -37,6 +38,7 @@ function App() {
         "/admin/dashboard/customers",
         "/admin/dashboard/category",
         "/admin/dashboard/menu",
+        "/admin/dashboard/orders",
       ].includes(location.pathname) && <Navbar />}
       <Box>
         <Routes>
@@ -64,6 +66,7 @@ function App() {
             <Route path="/admin/dashboard/" element={<AdminDashboard />}>
               <Route path="" element={<DashboardScreen />} />
               <Route path="customers" element={<CustomerListScreen />} />
+              <Route path="orders" element={<OrdersScreen />} />
               <Route path="category" element={<CategoryAddScreen />} />
               <Route path="menu" element={<MenuAddScreen />} />
             </Route>

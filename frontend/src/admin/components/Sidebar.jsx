@@ -4,6 +4,7 @@ import { MdDashboard, MdCategory, MdOutlineMenuBook } from "react-icons/md";
 import { HiMiniUsers } from "react-icons/hi2";
 import { NavLink } from "react-router-dom";
 import { RxCross1 } from "react-icons/rx";
+import { MdFastfood } from "react-icons/md";
 
 const Sidebar = ({ handleSidebar }) => {
   return (
@@ -72,6 +73,22 @@ const Sidebar = ({ handleSidebar }) => {
           >
             <HiMiniUsers />
             <Text>Users</Text>
+          </ListItem>
+        </NavLink>
+        <NavLink to={"/admin/dashboard/orders"}>
+          <ListItem
+            display={"flex"}
+            alignItems={"center"}
+            gap={2}
+            cursor={"pointer"}
+            transition={"all 0.1s ease-in"}
+            _hover={{
+              bgColor: "#9e9d9d",
+            }}
+            padding={4}
+          >
+            <MdFastfood />
+            <Text>Orders</Text>
           </ListItem>
         </NavLink>
 
