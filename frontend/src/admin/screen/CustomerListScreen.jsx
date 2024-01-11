@@ -10,10 +10,28 @@ import {
   TableContainer,
   Button,
 } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import { fetchAllUsers } from "../api/api";
+import { motion } from "framer-motion";
 
 const CustomerListScreen = () => {
+  const [getAllUsers, setGetAllUsers] = useState([]);
+
+  const getUsers = async () => {
+    const data = await fetchAllUsers();
+    setGetAllUsers(data);
+  };
+
+  useEffect(() => {
+    getUsers();
+  }, []);
   return (
-    <Box>
+    <Box
+      as={motion.div}
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition="0.2s linear"
+    >
       <Heading fontFamily={"Long Cang"} fontSize={"4rem"} textAlign={"center"}>
         Customers
       </Heading>
@@ -28,15 +46,18 @@ const CustomerListScreen = () => {
               <Th color={"white"}>Edit</Th>
             </Tr>
           </Thead>
+
           <Tbody>
-            <Tr>
-              <Td>1</Td>
-              <Td>Nikson shrestha</Td>
-              <Td>sthanikson10@gmail.com</Td>
-              <Td>
-                <Button colorScheme="purple">View</Button>
-              </Td>
-            </Tr>
+            {getAllUsers.data?.map((users, index) => (
+              <Tr key={users.id}>
+                <Td>{index + 1}</Td>
+                <Td>{users.fullname}</Td>
+                <Td>{users.email}</Td>
+                <Td>
+                  <Button colorScheme="purple">View</Button>
+                </Td>
+              </Tr>
+            ))}
           </Tbody>
         </Table>
       </TableContainer>

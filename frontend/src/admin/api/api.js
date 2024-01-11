@@ -29,3 +29,11 @@ export const adminLogin = async (email, password) => {
     console.log(error);
   }
 };
+export const fetchAllUsers = async () => {
+  try {
+    const response = await axios.get(import.meta.env.VITE_GETUSERS_URL);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};

@@ -1,6 +1,7 @@
 import { Admin } from "../model/adminSchema.js";
 import bcrypt from "bcryptjs";
 import { setAdmin } from "../services/adminauth.js";
+import { User } from "../model/userSchema.js";
 
 export const registerAdmin = async (req, res) => {
   try {
@@ -46,6 +47,23 @@ export const loginAdmin = async (req, res) => {
         success: true,
         message: `Welcome ${admin.fullname}`,
       });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+export const getAllUser = async (req, res) => {
+  try {
+    const allUsers = await User.find();
+
+    const usersData = allUsers.map((user) => ({
+      id: user._id,
+      fullname: user.fullname,
+      email: user.email,
+    }));
+
+    console.log(usersData);
+    res.status(200).json(usersData);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
