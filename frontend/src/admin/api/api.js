@@ -67,11 +67,34 @@ export const getCategory = async () => {
     console.log(error);
   }
 };
+
 export const deleteCategory = async (id) => {
   try {
     const response = await axios.delete(
       `${import.meta.env.VITE_DELETECATEGORY_URL}/${id}`
     );
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const addProduct = async (
+  name,
+  description,
+  price,
+  inStock,
+  imageUrl,
+  categoryId
+) => {
+  try {
+    const response = await axios.delete(import.meta.env.VITE_ADDPRODUCT_URL, {
+      name,
+      description,
+      price,
+      inStock,
+      imageUrl,
+      categoryId,
+    });
     return response;
   } catch (error) {
     console.log(error);
