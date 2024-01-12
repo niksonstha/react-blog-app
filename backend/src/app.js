@@ -5,6 +5,8 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import userRoutes from "./routes/userRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
+import categoryRoutes from "./routes/categoryRoutes.js";
+import productRoutes from "./routes/productRoutes.js";
 
 const app = express();
 
@@ -30,6 +32,8 @@ app.use(cookieParser());
 // ? routes
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/admin", adminRoutes);
+app.use("/api/v1/product", productRoutes);
+app.use("/api/v1/category", categoryRoutes);
 
 // ? server start
 app.listen(process.env.PORT, () => {
