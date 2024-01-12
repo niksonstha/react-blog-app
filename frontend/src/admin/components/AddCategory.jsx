@@ -24,6 +24,12 @@ const AddCategory = () => {
     fetchCategory();
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleAddCategory();
+    }
+  };
+
   return (
     <Box color={"black"}>
       <Heading fontSize={"2rem"} fontFamily={"Long Cang"} textAlign={"center"}>
@@ -36,6 +42,7 @@ const AddCategory = () => {
           placeholder="Enter category"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
+          onKeyDown={handleKeyPress}
         />
         <Button colorScheme="green" mt={3} mb={5} onClick={handleAddCategory}>
           Add
