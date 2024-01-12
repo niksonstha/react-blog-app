@@ -1,8 +1,11 @@
+import { Box, Heading } from "@chakra-ui/react";
 const MenuAddScreen = () => {
   return (
-    <div>
-      <h1>MenuAddScreen</h1>
-    </div>
+    <Box>
+      <Heading fontSize={"3rem"} fontFamily={"Long Cang"} letterSpacing={3}>
+        MENU
+      </Heading>
+    </Box>
   );
 };
 
