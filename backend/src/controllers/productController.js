@@ -10,12 +10,14 @@ export const addProduct = async (req, res) => {
       return res.status(400).json({ message: "Invalid categoryId" });
     }
 
+    console.log(req.file);
+
     const newProduct = await Product.create({
       name: req.body.name,
       description: req.body.description,
       price: req.body.price,
       inStock: req.body.inStock,
-      imageUrl: req.body.imageUrl,
+      imageUrl: req.file.path,
       categoryId: req.body.categoryId,
     });
 

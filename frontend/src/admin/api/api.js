@@ -83,7 +83,7 @@ export const addProduct = async (
   description,
   price,
   inStock,
-  imageUrl,
+  image,
   categoryId
 ) => {
   try {
@@ -92,7 +92,7 @@ export const addProduct = async (
       description,
       price,
       inStock,
-      imageUrl,
+      image,
       categoryId,
     });
     return response;
