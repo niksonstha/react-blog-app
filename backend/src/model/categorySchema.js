@@ -2,7 +2,7 @@ import { model, Schema } from "mongoose";
 
 const categorySchema = new Schema(
   {
-    name: {
+    category: {
       type: String,
       required: [true, "Please provide a name for the product."],
       maxLength: [

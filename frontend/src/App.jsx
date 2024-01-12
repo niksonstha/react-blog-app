@@ -28,7 +28,7 @@ function App() {
   const location = useLocation();
 
   return (
-    <Box>
+    <Box overflowX={"hidden"}>
       {![
         "/login",
         "/register",

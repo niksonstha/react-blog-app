@@ -3,7 +3,7 @@ import { Category } from "../model/categorySchema.js";
 export const addCategory = async (req, res) => {
   try {
     const addCategory = await Category.create({
-      name: req.body.name,
+      category: req.body.category,
     });
     res.status(200).json({
       success: "ok",

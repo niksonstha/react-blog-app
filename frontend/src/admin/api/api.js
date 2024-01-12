@@ -47,3 +47,14 @@ export const deleteUser = async (id) => {
     console.log(error);
   }
 };
+
+export const addCategory = async (category) => {
+  try {
+    const response = await axios.post(import.meta.env.VITE_ADDCATEGORY_URL, {
+      category,
+    });
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
