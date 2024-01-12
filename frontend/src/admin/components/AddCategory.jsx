@@ -1,12 +1,24 @@
 import { Box, Heading, Input, Button } from "@chakra-ui/react";
 import { useState } from "react";
 import { addCategory } from "../api/api";
+import { useToast } from "@chakra-ui/react";
 
 const AddCategory = () => {
   const [category, setCategory] = useState("");
 
+  const toast = useToast();
+
   const handleAddCategory = async () => {
-    await addCategory(category);
+    const res = await addCategory(category);
+    res &&
+      toast({
+        title: "Category added.",
+        description: "We've added product category",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
+
     setCategory("");
   };
 

@@ -58,3 +58,12 @@ export const addCategory = async (category) => {
     console.log(error);
   }
 };
+
+export const getCategory = async () => {
+  try {
+    const response = await axios.get(import.meta.env.VITE_GETCATEGORY_URL);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};

@@ -1,5 +1,6 @@
 import { Box, Heading } from "@chakra-ui/react";
 import AddCategory from "../components/AddCategory";
+import CategoryList from "../components/CategoryList";
 const CategoryAddScreen = () => {
   return (
     <Box width={"80vw"} mr={"auto"} ml={"auto"}>
@@ -16,7 +17,9 @@ const CategoryAddScreen = () => {
         <Box bgColor={"#F1EFEF"} rounded={10} height={"max-content"} flex={1}>
           <AddCategory />
         </Box>
-        <Box bgColor={"#F1EFEF"} rounded={10} flex={2}></Box>
+        <Box bgColor={"#F1EFEF"} rounded={10} flex={2}>
+          <CategoryList />
+        </Box>
       </Box>
     </Box>
   );
