@@ -15,7 +15,7 @@ const upload = multer({ storage });
 
 const router = express.Router();
 
-router.post("/addProduct", upload.single("foodImage"), addProduct);
+router.post("/addProduct", upload.single("image"), addProduct);
 router.get("/showProduct", showProduct);
 
 export default router;

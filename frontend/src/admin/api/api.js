@@ -78,23 +78,30 @@ export const deleteCategory = async (id) => {
     console.log(error);
   }
 };
+
 export const addProduct = async (
   name,
   description,
   price,
   inStock,
-  image,
+  imagePath,
   categoryId
 ) => {
   try {
-    const response = await axios.delete(import.meta.env.VITE_ADDPRODUCT_URL, {
-      name,
-      description,
-      price,
-      inStock,
-      image,
-      categoryId,
-    });
+    var bodyFormData = new FormData();
+    bodyFormData.append("image", imagePath);
+    bodyFormData.append("name", name);
+    bodyFormData.append("description", description);
+    bodyFormData.append("price", price);
+    bodyFormData.append("inStock", inStock);
+    bodyFormData.append("categoryId", categoryId);
+    const response = await axios.post(
+      import.meta.env.VITE_ADDPRODUCT_URL,
+      bodyFormData,
+      {
+        headers: { "Content-Type": "multipart/form-data" },
+      }
+    );
     return response;
   } catch (error) {
     console.log(error);

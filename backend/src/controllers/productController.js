@@ -1,30 +1,24 @@
 import { Product } from "../model/productSchema.js";
 import { Category } from "../model/categorySchema.js"; // Import the Category model
+import mongoose from "mongoose";
 
 export const addProduct = async (req, res) => {
+  console.log(req.file.path);
   try {
-    // Check if the categoryId exists before creating the product
-    const category = await Category.findById(req.body.categoryId);
-
-    if (!category) {
-      return res.status(400).json({ message: "Invalid categoryId" });
-    }
-
-    console.log(req.file);
-
     const newProduct = await Product.create({
       name: req.body.name,
       description: req.body.description,
       price: req.body.price,
       inStock: req.body.inStock,
-      imageUrl: req.file.path,
+      image: req.file.path,
       categoryId: req.body.categoryId,
     });
 
     res.status(201).json(newProduct);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Internal Server Error" });
+    res
+      .status(500)
+      .json({ message: "Internal Server Error", error: error.message });
   }
 };
 
