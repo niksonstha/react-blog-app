@@ -24,3 +24,15 @@ export const getCategory = async (req, res) => {
     console.log(error);
   }
 };
+export const deleteCategory = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const deleteCategory = await Category.findByIdAndDelete(id);
+    res.status(200).json({
+      success: "ok",
+      message: "Category deleted successfully",
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};

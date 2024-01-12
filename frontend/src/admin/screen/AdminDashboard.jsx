@@ -5,7 +5,7 @@ import { useState } from "react";
 import { FaBars } from "react-icons/fa";
 
 const AdminDashboard = () => {
-  const [closeSideBar, setCloseSideBar] = useState(false);
+  const [closeSideBar, setCloseSideBar] = useState(true);
 
   const handleSidebar = () => {
     setCloseSideBar(false);

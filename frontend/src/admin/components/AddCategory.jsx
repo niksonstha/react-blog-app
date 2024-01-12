@@ -2,10 +2,11 @@ import { Box, Heading, Input, Button } from "@chakra-ui/react";
 import { useState } from "react";
 import { addCategory } from "../api/api";
 import { useToast } from "@chakra-ui/react";
+import { useCategory } from "../context/store";
 
 const AddCategory = () => {
   const [category, setCategory] = useState("");
-
+  const { fetchCategory } = useCategory();
   const toast = useToast();
 
   const handleAddCategory = async () => {
@@ -20,6 +21,7 @@ const AddCategory = () => {
       });
 
     setCategory("");
+    fetchCategory();
   };
 
   return (

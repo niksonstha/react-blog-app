@@ -8,28 +8,27 @@ import {
   Tr,
   Th,
   Td,
-  TableCaption,
   TableContainer,
   Button,
 } from "@chakra-ui/react";
-import { useCallback, useEffect } from "react";
+import { useEffect } from "react";
 import { MdDelete } from "react-icons/md";
-import { getCategory } from "../api/api";
-import { useCategory } from "../context/context";
+import { deleteCategory } from "../api/api";
+import { useCategory } from "../context/store";
 
 const CategoryList = () => {
-  const { categoriesList, setCategories } = useCategory();
+  const { categories, fetchCategory } = useCategory();
 
-  const fetchCategory = useCallback(async () => {
-    const res = await getCategory();
-    setCategories(res.data.data);
-  }, [setCategories]);
+  const deleteHandler = async (id) => {
+    await deleteCategory(id);
+    fetchCategory();
+  };
 
   useEffect(() => {
     fetchCategory();
-  }, [fetchCategory]);
+  }, []);
   return (
-    <Box color={"black"}>
+    <Box color={"black"} height={"70vh"} overflowY={"scroll"} padding={10}>
       <Heading fontFamily={"Long Cang"} textAlign={"center"}>
         Category List
       </Heading>
@@ -37,7 +36,6 @@ const CategoryList = () => {
       <Box>
         <TableContainer>
           <Table variant="striped" colorScheme="purple">
-            <TableCaption>Product Categories</TableCaption>
             <Thead>
               <Tr>
                 <Th>SN</Th>
@@ -46,12 +44,12 @@ const CategoryList = () => {
               </Tr>
             </Thead>
             <Tbody>
-              {categoriesList?.map((category, index) => (
-                <Tr key={category?._id}>
+              {categories?.map((category, index) => (
+                <Tr key={category._id}>
                   <Td>{index + 1}</Td>
                   <Td>{category?.category}</Td>
                   <Td>
-                    <Button>
+                    <Button onClick={() => deleteHandler(category._id)}>
                       <MdDelete color="red" fontSize={"1.2rem"} />
                     </Button>
                   </Td>

@@ -67,3 +67,13 @@ export const getCategory = async () => {
     console.log(error);
   }
 };
+export const deleteCategory = async (id) => {
+  try {
+    const response = await axios.delete(
+      `${import.meta.env.VITE_DELETECATEGORY_URL}/${id}`
+    );
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
