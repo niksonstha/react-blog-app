@@ -3,6 +3,7 @@ import { useState } from "react";
 import { addCategory } from "../api/api";
 import { useToast } from "@chakra-ui/react";
 import { useCategory } from "../context/store";
+import { motion } from "framer-motion";
 
 const AddCategory = () => {
   const [category, setCategory] = useState("");
@@ -31,7 +32,13 @@ const AddCategory = () => {
   };
 
   return (
-    <Box color={"black"}>
+    <Box
+      color={"black"}
+      as={motion.div}
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition="0.2s linear"
+    >
       <Heading fontSize={"2rem"} fontFamily={"Long Cang"} textAlign={"center"}>
         Add Category
       </Heading>

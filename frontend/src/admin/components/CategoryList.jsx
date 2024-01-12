@@ -15,6 +15,7 @@ import { useEffect } from "react";
 import { MdDelete } from "react-icons/md";
 import { deleteCategory } from "../api/api";
 import { useCategory } from "../context/store";
+import { motion } from "framer-motion";
 
 const CategoryList = () => {
   const { categories, fetchCategory } = useCategory();
@@ -28,7 +29,16 @@ const CategoryList = () => {
     fetchCategory();
   }, []);
   return (
-    <Box color={"black"} height={"70vh"} overflowY={"scroll"} padding={10}>
+    <Box
+      color={"black"}
+      height={"70vh"}
+      overflowY={"scroll"}
+      padding={10}
+      as={motion.div}
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition="0.2s linear"
+    >
       <Heading fontFamily={"Long Cang"} textAlign={"center"}>
         Category List
       </Heading>
