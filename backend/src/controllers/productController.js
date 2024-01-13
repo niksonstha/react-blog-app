@@ -1,8 +1,9 @@
 import { Product } from "../model/productSchema.js";
 
 export const addProduct = async (req, res) => {
-  console.log(req.file.path);
   try {
+    const path = req.file.path;
+    if (!path) return;
     const newProduct = await Product.create({
       name: req.body.name,
       description: req.body.description,

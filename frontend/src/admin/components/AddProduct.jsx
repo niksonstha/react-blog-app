@@ -28,7 +28,9 @@ const AddProduct = () => {
     setStock("");
     setImage("");
     setCategoryId("");
-    resetFileInput();
+    if (image !== null) {
+      resetFileInput();
+    }
   };
 
   const resetFileInput = () => {
