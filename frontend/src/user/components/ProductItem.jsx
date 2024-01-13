@@ -1,10 +1,17 @@
 import { Box, Image } from "@chakra-ui/react";
-import banner1 from "../assets/banner1.jpg";
-import banner2 from "../assets/banner2.jpg";
-import banner3 from "../assets/banner3.jpg";
-import banner4 from "../assets/banner4.jpg";
+import { useEffect, useState } from "react";
+import { getProducts } from "../../admin/api/api";
 const ProductItem = () => {
-  const imageUrls = [banner1, banner2, banner3, banner4];
+  const [products, setProducts] = useState([]);
+
+  const fetchProducts = async () => {
+    const res = await getProducts();
+    setProducts(res.data);
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
   return (
     <Box
       display={"grid"}
@@ -18,7 +25,7 @@ const ProductItem = () => {
       gap={5}
       mt={5}
     >
-      {imageUrls.map((url, index) => (
+      {products.map((product, index) => (
         <Box
           key={index}
           height={"40vh"}
@@ -32,7 +39,7 @@ const ProductItem = () => {
           rounded={10}
         >
           <Image
-            src={url}
+            src={`http://localhost:3000/${product.image}`}
             width={"100%"}
             height={"100%"}
             transition={"all 0.2s ease-in"}

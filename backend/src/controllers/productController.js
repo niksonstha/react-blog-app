@@ -9,7 +9,7 @@ export const addProduct = async (req, res) => {
       description: req.body.description,
       price: req.body.price,
       inStock: req.body.inStock,
-      image: req.file.path,
+      image: req.file.filename,
       categoryId: req.body.categoryId,
     });
 
