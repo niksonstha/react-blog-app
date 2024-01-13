@@ -2,14 +2,7 @@ import { Box, Heading } from "@chakra-ui/react";
 import ProductItem from "../components/ProductItem";
 const ProductsScreen = () => {
   return (
-    <Box
-      width={"90%"}
-      ml={"auto"}
-      mr={"auto"}
-      style={{
-        scrollSnapAlign: "start",
-      }}
-    >
+    <Box width={"90%"} ml={"auto"} mr={"auto"}>
       <Heading
         letterSpacing={4}
         fontFamily={"Long Cang"}

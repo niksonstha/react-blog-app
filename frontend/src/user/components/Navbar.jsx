@@ -3,13 +3,14 @@ import { NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { FaBarsStaggered } from "react-icons/fa6";
 import { FaUser } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Profile from "./Profile";
 import { FaBasketShopping } from "react-icons/fa6";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
+  const [scrolling, setScrolling] = useState(false);
   const location = useLocation();
 
   const navbarHandler = () => {
@@ -20,8 +21,35 @@ const Navbar = () => {
     setShowProfile(!showProfile);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setScrolling(true);
+      } else {
+        setScrolling(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <Box pos={"fixed"} width={"100%"} zIndex={1000}>
+    <Box
+      pos={"fixed"}
+      width={"100%"}
+      zIndex={1000}
+      top={0}
+      left={0}
+      bg={scrolling ? "rgba(0, 0, 0, 0.2)" : "transparent"} // Adjust the color and opacity as needed
+      backdropFilter={scrolling ? "blur(10px)" : "none"} // Add blur effect when scrolling
+      transition={
+        "background-color 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out"
+      }
+    >
       <Box
         pos={"absolute"}
         bgColor={"#F1EFEF"}
@@ -44,6 +72,8 @@ const Navbar = () => {
         alignItems={"center"}
         overflowX={"hidden"}
         transition={"all 0.3s ease-in"}
+        mt={[3, 3, 0]}
+        mb={[3, 3, 0]}
         style={{
           scrollSnapAlign: "start",
         }}
@@ -67,7 +97,7 @@ const Navbar = () => {
           position={nav && ["absolute", "absolute"]}
           top={"4rem"}
           // left={-5}
-          bgColor={["#7D7C7C", "#7D7C7C", "transparent"]}
+          bgColor={["rgba(0, 0, 0, 0.2)", "rgba(0, 0, 0, 0.2)", "transparent"]}
           width={["100%", "100%", "auto"]}
           zIndex={20}
           padding={5}

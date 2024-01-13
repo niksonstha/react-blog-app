@@ -1,9 +1,6 @@
 export const theme = {
   styles: {
     global: () => ({
-      html: {
-        scrollSnapType: "y proximity",
-      },
       "*": {
         boxSizing: "border-box",
       },
