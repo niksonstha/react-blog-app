@@ -19,8 +19,6 @@ import { getProducts } from "../api/api";
 const ProductList = () => {
   const [products, setProducts] = useState([]);
 
-  console.log(products);
-
   const fetchProducts = async () => {
     const data = await getProducts();
     setProducts(data.data);
@@ -42,6 +40,8 @@ const ProductList = () => {
               <Tr>
                 <Th>SN</Th>
                 <Th>Name</Th>
+                <Th>Price</Th>
+                <Th>Available</Th>
                 <Th>Category</Th>
                 <Th>Edit</Th>
                 <Th>Delete</Th>
@@ -52,6 +52,13 @@ const ProductList = () => {
                 <Tr key={product._id}>
                   <Td>{index + 1}</Td>
                   <Td>{product.name}</Td>
+                  <Td>Rs {product.price}</Td>
+                  <Td
+                    color={product.inStock === true ? "green" : "red"}
+                    fontWeight={"bold"}
+                  >
+                    {product.inStock === true ? "In Stock" : "Out of stock"}
+                  </Td>
                   <Td>{product.categoryId.category}</Td>
                   <Td cursor={"pointer"}>
                     <FaEdit color="green" fontSize={"1.2rem"} />
