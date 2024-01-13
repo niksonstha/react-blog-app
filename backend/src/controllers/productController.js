@@ -1,6 +1,4 @@
 import { Product } from "../model/productSchema.js";
-import { Category } from "../model/categorySchema.js"; // Import the Category model
-import mongoose from "mongoose";
 
 export const addProduct = async (req, res) => {
   console.log(req.file.path);
