@@ -39,7 +39,12 @@ function App() {
         "/admin/dashboard/category",
         "/admin/dashboard/menu",
         "/admin/dashboard/orders",
-      ].includes(location.pathname) && <Navbar />}
+      ].includes(location.pathname) && (
+        <Box mb={20}>
+          <Navbar />
+        </Box>
+      )}
+
       <Box>
         <Routes>
           {/* User Side Routes */}

@@ -14,7 +14,7 @@ export const theme = {
       },
 
       "*::-webkit-scrollbar": {
-        width: "4px",
+        width: "5px",
       },
 
       "*::-webkit-scrollbar-track": {
