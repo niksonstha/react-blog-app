@@ -107,3 +107,12 @@ export const addProduct = async (
     console.log(error);
   }
 };
+
+export const getProducts = async () => {
+  try {
+    const response = await axios.get(import.meta.env.VITE_SHOWPRODUCT_URL);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};

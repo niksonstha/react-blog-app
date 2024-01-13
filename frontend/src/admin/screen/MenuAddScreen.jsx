@@ -1,6 +1,7 @@
 import { Box, Heading } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import AddProduct from "../components/AddProduct";
+import ProductList from "../components/ProductList";
 const MenuAddScreen = () => {
   return (
     <Box width={"80vw"} mr={"auto"} ml={"auto"}>
@@ -32,7 +33,7 @@ const MenuAddScreen = () => {
           <AddProduct />
         </Box>
         <Box flex={3} bgColor={"white"} rounded={10} padding={5}>
-          All Items
+         <ProductList/>
         </Box>
       </Box>
     </Box>
