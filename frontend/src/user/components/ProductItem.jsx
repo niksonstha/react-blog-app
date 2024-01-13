@@ -1,8 +1,10 @@
-import { Box, Image } from "@chakra-ui/react";
+import { Box, Image, Button } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { getProducts } from "../../admin/api/api";
+
 const ProductItem = () => {
   const [products, setProducts] = useState([]);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
 
   const fetchProducts = async () => {
     const res = await getProducts();
@@ -12,6 +14,7 @@ const ProductItem = () => {
   useEffect(() => {
     fetchProducts();
   }, []);
+
   return (
     <Box
       display={"grid"}
@@ -24,31 +27,43 @@ const ProductItem = () => {
       ]}
       gap={5}
       mt={5}
+      backdropFilter="blur(5px)"
     >
       {products.map((product, index) => (
         <Box
           key={index}
           height={"40vh"}
-          transition={"transform 0.2s ease-in"}
+          cursor={"pointer"}
+          overflow={"hidden"}
+          rounded={10}
+          transition={"all 0.2s ease-in"}
           _hover={{
             transform: "scale(1.07)",
           }}
-          cursor={"pointer"}
           pos={"relative"}
-          overflow={"hidden"}
-          rounded={10}
+          onMouseOver={() => setHoveredIndex(index)}
+          onMouseLeave={() => setHoveredIndex(null)}
         >
           <Image
             src={`http://localhost:3000/${product.image}`}
             width={"100%"}
             height={"100%"}
-            transition={"all 0.2s ease-in"}
-            _hover={{
-              filter: "brightness(50%)",
-              transform: "scale(1.07)",
-            }}
             objectFit={"cover"}
           />
+          {hoveredIndex === index && (
+            <Box
+              pos={"absolute"}
+              bottom={0}
+              left={0}
+              zIndex={2000}
+              transition={"all 0.3s ease-in-out"}
+              bg={"rgba(0, 0, 0, 0.2)"}
+              width={"100%"}
+              height={"100%"}
+            >
+              <Button colorScheme="purple">Add To Cart</Button>
+            </Box>
+          )}
         </Box>
       ))}
     </Box>
