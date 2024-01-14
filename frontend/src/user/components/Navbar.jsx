@@ -96,7 +96,6 @@ const Navbar = () => {
           fontWeight={500}
           position={nav && ["absolute", "absolute"]}
           top={"4rem"}
-          // left={-5}
           bgColor={["rgba(0, 0, 0, 0.2)", "rgba(0, 0, 0, 0.2)", "transparent"]}
           width={["100%", "100%", "auto"]}
           zIndex={20}

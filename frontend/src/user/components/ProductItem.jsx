@@ -35,12 +35,11 @@ const ProductItem = () => {
           overflow={"hidden"}
           rounded={10}
           bgColor={"white"}
-          transition={"all 0.2s ease-in"}
+          transition={"transform 0.2s ease-in"}
           _hover={{
             transform: "scale(1.07)",
           }}
           display={"flex"}
-          // justifyContent={"center"}
           flexDirection={"column"}
           alignItems={"center"}
           color={"black"}
@@ -50,6 +49,10 @@ const ProductItem = () => {
             width={"100%"}
             height={"30vh"}
             objectFit={"cover"}
+            transition={"transform 0.2s ease-in"}
+            _hover={{
+              transform: "scale(1.07)",
+            }}
           />
           <Text mt={5} fontSize={"1.3rem"} color={"purple"} fontWeight={"bold"}>
             {product.name}
