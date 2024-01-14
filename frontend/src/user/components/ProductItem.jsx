@@ -1,10 +1,9 @@
-import { Box, Image, Button } from "@chakra-ui/react";
+import { Box, Image, Text, Button } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { getProducts } from "../../admin/api/api";
 
 const ProductItem = () => {
   const [products, setProducts] = useState([]);
-  const [hoveredIndex, setHoveredIndex] = useState(null);
 
   const fetchProducts = async () => {
     const res = await getProducts();
@@ -27,43 +26,41 @@ const ProductItem = () => {
       ]}
       gap={5}
       mt={5}
-      backdropFilter="blur(5px)"
     >
       {products.map((product, index) => (
         <Box
           key={index}
-          height={"40vh"}
+          height={"55vh"}
           cursor={"pointer"}
           overflow={"hidden"}
           rounded={10}
+          bgColor={"white"}
           transition={"all 0.2s ease-in"}
           _hover={{
             transform: "scale(1.07)",
           }}
-          pos={"relative"}
-          onMouseOver={() => setHoveredIndex(index)}
-          onMouseLeave={() => setHoveredIndex(null)}
+          display={"flex"}
+          // justifyContent={"center"}
+          flexDirection={"column"}
+          alignItems={"center"}
+          color={"black"}
         >
           <Image
             src={`http://localhost:3000/${product.image}`}
             width={"100%"}
-            height={"100%"}
+            height={"30vh"}
             objectFit={"cover"}
           />
-          {hoveredIndex === index && (
-            <Box
-              pos={"absolute"}
-              bottom={0}
-              left={0}
-              zIndex={2000}
-              transition={"all 0.3s ease-in-out"}
-              bg={"rgba(0, 0, 0, 0.2)"}
-              width={"100%"}
-              height={"100%"}
-            >
-              <Button colorScheme="purple">Add To Cart</Button>
-            </Box>
-          )}
+          <Text mt={5} fontSize={"1.3rem"} color={"purple"} fontWeight={"bold"}>
+            {product.name}
+          </Text>
+          <Text mt={5} fontSize={"1.3rem"} color={"red"} fontWeight={"bold"}>
+            Price: Rs {product.price}
+          </Text>
+
+          <Button colorScheme="green" mt={2} mb={3}>
+            Buy
+          </Button>
         </Box>
       ))}
     </Box>
