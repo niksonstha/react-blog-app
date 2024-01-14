@@ -4,9 +4,13 @@ import { MdDashboard, MdCategory, MdOutlineMenuBook } from "react-icons/md";
 import { HiMiniUsers } from "react-icons/hi2";
 import { NavLink } from "react-router-dom";
 import { RxCross1 } from "react-icons/rx";
-import { MdFastfood } from "react-icons/md";
+import { MdFastfood, MdLogout } from "react-icons/md";
+import Cookies from "js-cookie";
 
 const Sidebar = ({ handleSidebar }) => {
+  const logoutHandler = () => {
+    Cookies.remove("aid");
+  };
   return (
     <Box bgColor={"#7D7C7C"} height={"100vh"} color={"black"}>
       <Box
@@ -127,6 +131,29 @@ const Sidebar = ({ handleSidebar }) => {
           >
             <MdOutlineMenuBook />
             <Text>Menu</Text>
+          </ListItem>
+        </NavLink>
+        <NavLink
+          to={"/admin/login"}
+          onClick={logoutHandler}
+          style={{
+            position: "fixed",
+            bottom: 20,
+          }}
+        >
+          <ListItem
+            display={"flex"}
+            alignItems={"center"}
+            gap={2}
+            cursor={"pointer"}
+            transition={"all 0.1s ease-in"}
+            _hover={{
+              fontWeight: "bold",
+            }}
+            padding={4}
+          >
+            <MdLogout />
+            <Text>Logout</Text>
           </ListItem>
         </NavLink>
       </UnorderedList>

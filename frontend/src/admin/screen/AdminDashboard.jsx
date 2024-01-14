@@ -24,8 +24,7 @@ const AdminDashboard = () => {
         </Box>
       )}
       <Box
-        position={"sticky"}
-        flex={closeSideBar ? 1 : 0}
+        flex={closeSideBar ? 1.3 : 0}
         transition={"opacity 0.3s ease-in"}
         opacity={closeSideBar ? 1 : 0}
       >
