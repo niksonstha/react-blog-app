@@ -116,3 +116,13 @@ export const getProducts = async () => {
     console.log(error);
   }
 };
+export const deleteProduct = async (id) => {
+  try {
+    const response = await axios.delete(
+      `${import.meta.env.VITE_DELETEPRODUCT_URL}/${id}`
+    );
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};

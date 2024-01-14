@@ -14,7 +14,7 @@ import {
 import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import { useEffect, useState } from "react";
-import { getProducts } from "../api/api";
+import { deleteProduct, getProducts } from "../api/api";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -22,6 +22,11 @@ const ProductList = () => {
   const fetchProducts = async () => {
     const data = await getProducts();
     setProducts(data.data);
+  };
+
+  const deleteHandler = async (id) => {
+    await deleteProduct(id);
+    fetchProducts();
   };
 
   useEffect(() => {
@@ -64,7 +69,11 @@ const ProductList = () => {
                     <FaEdit color="green" fontSize={"1.2rem"} />
                   </Td>
                   <Td cursor={"pointer"}>
-                    <MdDelete color="red" fontSize={"1.2rem"} />
+                    <MdDelete
+                      color="red"
+                      fontSize={"1.2rem"}
+                      onClick={() => deleteHandler(product._id)}
+                    />
                   </Td>
                 </Tr>
               ))}

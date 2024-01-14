@@ -1,5 +1,9 @@
 import express from "express";
-import { addProduct, showProduct } from "../controllers/productController.js";
+import {
+  addProduct,
+  deleteProduct,
+  showProduct,
+} from "../controllers/productController.js";
 import multer from "multer";
 
 const storage = multer.diskStorage({
@@ -17,5 +21,6 @@ const router = express.Router();
 
 router.post("/addProduct", upload.single("image"), addProduct);
 router.get("/showProduct", showProduct);
+router.delete("/deleteProduct/:id", deleteProduct);
 
 export default router;

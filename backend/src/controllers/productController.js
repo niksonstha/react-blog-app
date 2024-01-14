@@ -29,3 +29,16 @@ export const showProduct = async (req, res) => {
     console.log(error);
   }
 };
+export const deleteProduct = async (req, res) => {
+  try {
+    const id = req.params.id;
+    console.log(id);
+    const products = await Product.findByIdAndDelete(id);
+    res.status(204).json({
+      success: "ok",
+      message: "Product deleted successfully",
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
