@@ -1,8 +1,8 @@
-import axios from "axios";
+import { instance } from "../../axios/axios";
 
 export const registerUser = async (fullname, username, email, password) => {
   try {
-    const response = await axios.post(import.meta.env.VITE_REGISTER_URL, {
+    const response = await instance.post("/user/createUser", {
       fullname,
       username,
       email,
@@ -15,8 +15,8 @@ export const registerUser = async (fullname, username, email, password) => {
 };
 export const loginUser = async (email, password) => {
   try {
-    const response = await axios.post(
-      import.meta.env.VITE_LOGIN_URL,
+    const response = await instance.post(
+      "/user/loginUser",
       {
         email,
         password,
@@ -25,6 +25,7 @@ export const loginUser = async (email, password) => {
         withCredentials: true,
       }
     );
+    console.log(response);
     return response;
   } catch (error) {
     console.log(error);
@@ -33,13 +34,10 @@ export const loginUser = async (email, password) => {
 
 export const updateUser = async (id, fullname, email) => {
   try {
-    const response = await axios.patch(
-      `${import.meta.env.VITE_UPDATE_PROFILE_URL}/${id}`,
-      {
-        fullname,
-        email,
-      }
-    );
+    const response = await instance.patch(`/user/${id}`, {
+      fullname,
+      email,
+    });
     return response;
   } catch (error) {
     console.log(error);
@@ -47,13 +45,10 @@ export const updateUser = async (id, fullname, email) => {
 };
 export const changePassword = async (id, currentPassword, newPassword) => {
   try {
-    const response = await axios.patch(
-      `${import.meta.env.VITE_UPDATE_PASSWORD_URL}/${id}`,
-      {
-        currentPassword,
-        newPassword,
-      }
-    );
+    const response = await instance.patch(`/user/changePassword/${id}`, {
+      currentPassword,
+      newPassword,
+    });
     return response;
   } catch (error) {
     console.log(error);

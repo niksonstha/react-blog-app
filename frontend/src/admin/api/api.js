@@ -1,8 +1,8 @@
-import axios from "axios";
+import { instance } from "../../axios/axios";
 
 export const adminRegister = async (fullname, email, password) => {
   try {
-    const response = await axios.post(import.meta.env.VITE_ADMIN_REGISTER_URL, {
+    const response = await instance.post("/admin/register", {
       fullname,
       email,
       password,
@@ -14,8 +14,8 @@ export const adminRegister = async (fullname, email, password) => {
 };
 export const adminLogin = async (email, password) => {
   try {
-    const response = await axios.post(
-      import.meta.env.VITE_ADMIN_LOGIN_URL,
+    const response = await instance.post(
+      "/admin/loginAdmin",
       {
         email,
         password,
@@ -31,7 +31,7 @@ export const adminLogin = async (email, password) => {
 };
 export const fetchAllUsers = async () => {
   try {
-    const response = await axios.get(import.meta.env.VITE_GETUSERS_URL);
+    const response = await instance.get("/admin/getAllUsers");
     return response;
   } catch (error) {
     console.log(error);
@@ -39,9 +39,7 @@ export const fetchAllUsers = async () => {
 };
 export const deleteUser = async (id) => {
   try {
-    const response = await axios.delete(
-      `${import.meta.env.VITE_DELETEUSER_URL}/${id}`
-    );
+    const response = await instance.delete(`/admin/deleteUser/${id}`);
     return response;
   } catch (error) {
     console.log(error);
@@ -50,7 +48,7 @@ export const deleteUser = async (id) => {
 
 export const addCategory = async (category) => {
   try {
-    const response = await axios.post(import.meta.env.VITE_ADDCATEGORY_URL, {
+    const response = await instance.post("/category/addCategory", {
       category,
     });
     return response;
@@ -61,7 +59,7 @@ export const addCategory = async (category) => {
 
 export const getCategory = async () => {
   try {
-    const response = await axios.get(import.meta.env.VITE_GETCATEGORY_URL);
+    const response = await instance.get("/category/getCategory");
     return response;
   } catch (error) {
     console.log(error);
@@ -70,9 +68,7 @@ export const getCategory = async () => {
 
 export const deleteCategory = async (id) => {
   try {
-    const response = await axios.delete(
-      `${import.meta.env.VITE_DELETECATEGORY_URL}/${id}`
-    );
+    const response = await instance.delete(`/category/deleteCategory/${id}`);
     return response;
   } catch (error) {
     console.log(error);
@@ -95,13 +91,9 @@ export const addProduct = async (
     bodyFormData.append("price", price);
     bodyFormData.append("inStock", inStock);
     bodyFormData.append("categoryId", categoryId);
-    const response = await axios.post(
-      import.meta.env.VITE_ADDPRODUCT_URL,
-      bodyFormData,
-      {
-        headers: { "Content-Type": "multipart/form-data" },
-      }
-    );
+    const response = await instance.post("/product/addProduct", bodyFormData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
     return response;
   } catch (error) {
     console.log(error);
@@ -110,7 +102,7 @@ export const addProduct = async (
 
 export const getProducts = async () => {
   try {
-    const response = await axios.get(import.meta.env.VITE_SHOWPRODUCT_URL);
+    const response = await instance.get("/product/showProduct");
     return response;
   } catch (error) {
     console.log(error);
@@ -118,9 +110,7 @@ export const getProducts = async () => {
 };
 export const deleteProduct = async (id) => {
   try {
-    const response = await axios.delete(
-      `${import.meta.env.VITE_DELETEPRODUCT_URL}/${id}`
-    );
+    const response = await instance.delete(`/product/deleteProduct/${id}`);
     return response;
   } catch (error) {
     console.log(error);
